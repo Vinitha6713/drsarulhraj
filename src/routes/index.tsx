@@ -21,16 +21,20 @@ export const Route = createFileRoute("/")({
   }),
 });
 
-const PORTRAIT =
-  "https://drsarulrhaj.com/assets/images/about/pp%20(1).jpg";
+const PORTRAIT = "https://drsarulrhaj.com/assets/images/about/pp%20(1).jpg";
+const SERVICE_ANGLE = "https://drsarulrhaj.com/assets/images/services/service-angle.png";
+const SERVICE_ELLIPSE = "https://drsarulrhaj.com/assets/images/services/ellipse.png";
+const HOSPITAL_BG =
+  "https://images.unsplash.com/photo-1538108149393-fbbd81895907?auto=format&fit=crop&w=1800&q=80";
 
 const NAV = [
   { label: "Home", href: "#home" },
   { label: "About", href: "#about" },
-  { label: "Leadership", href: "#leadership" },
-  { label: "Health", href: "#health" },
-  { label: "Hospital", href: "#hospital" },
-  { label: "Gallery", href: "#gallery" },
+  { label: "Vision", href: "#vision" },
+  { label: "Services", href: "#leadership" },
+  { label: "Pillars", href: "#health" },
+  { label: "Videos", href: "#gallery" },
+  { label: "Contact", href: "#contact" },
 ];
 
 const RESOURCES = [
@@ -60,7 +64,7 @@ const PILLARS = [
   {
     tag: "01",
     title: "Health Care",
-    body: "Lifestyle and wellness centres — “Health Wealth”, Tuticorin.",
+    body: 'Lifestyle centres — "Health Wealth", Tuticorin.',
   },
   {
     tag: "02",
@@ -70,7 +74,7 @@ const PILLARS = [
   {
     tag: "03",
     title: "Education",
-    body: "“Education is the most powerful weapon which you can use to change the world.”",
+    body: "Education is the most powerful weapon which you can use to change the world.",
   },
   {
     tag: "04",
@@ -82,27 +86,27 @@ const PILLARS = [
 const VIDEOS = [
   {
     id: "NZA7G2S1PhM",
-    title: "Doctors Day Speech",
+    title: "Dr Arulrhaj Speech — Doctors Day",
     series: "Medi Talk",
-    note: "An address to the medical community on Doctors Day.",
+    note: "Watch this Medi talk playlist — an address to the medical community on Doctors Day.",
   },
   {
     id: "jAsX8fEPOLw",
     title: "World No Tobacco Day (Tamil)",
     series: "Health Talk",
-    note: "A public talk in Tamil for World No Tobacco Day.",
+    note: "Watch this Health talk playlist — public address in Tamil for World No Tobacco Day.",
   },
   {
     id: "RICvuc4lIjU",
     title: "No to Mixopathy",
-    series: "Advocacy",
-    note: "Why modern medicine must remain a distinct discipline.",
+    series: "Advocacy · English",
+    note: "Say No to Mixopathy — watch this full video about mixopathy.",
   },
   {
     id: "7xPnT3bweaQ",
-    title: "Mixopathy Agitation — Tuticorin IMA",
-    series: "Advocacy",
-    note: "Coverage of the IMA and Medical College agitation.",
+    title: "Mixopathy Agitation — Tuticorin IMA & Medical College",
+    series: "Advocacy · Tamil",
+    note: "Coverage of the IMA and Medical College agitation against mixopathy.",
   },
 ];
 
@@ -118,16 +122,12 @@ function Index() {
   return (
     <div
       className="min-h-screen bg-background text-foreground"
-      style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
+      style={{ fontFamily: "'Inter', system-ui, sans-serif", scrollBehavior: "smooth" }}
     >
       <style>{`
+        html { scroll-behavior: smooth; scroll-padding-top: 90px; }
         .font-serif { font-family: 'Cormorant Garamond', Georgia, serif; }
         .hairline { letter-spacing: 0.22em; text-transform: uppercase; font-size: 11px; }
-        .grain::before {
-          content: ""; position: absolute; inset: 0; pointer-events: none;
-          background-image: radial-gradient(rgba(0,0,0,0.04) 1px, transparent 1px);
-          background-size: 3px 3px; opacity: .35;
-        }
       `}</style>
 
       {/* NAV */}
@@ -148,7 +148,7 @@ function Index() {
               <div className="hairline text-muted-foreground">Senior Physician · Tuticorin</div>
             </div>
           </a>
-          <nav className="hidden lg:flex items-center gap-8">
+          <nav className="hidden lg:flex items-center gap-7">
             {NAV.map((n) => (
               <a
                 key={n.href}
@@ -160,26 +160,35 @@ function Index() {
             ))}
           </nav>
           <a
-            href="https://drsarulrhaj.com/contact.html"
+            href="#contact"
             className="hidden md:inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground hover:opacity-90 transition"
           >
-            Contact
-            <span aria-hidden>→</span>
+            Contact <span aria-hidden>→</span>
           </a>
         </div>
       </header>
 
-      {/* HERO */}
+      {/* HERO — with subtle blurred hospital backdrop */}
       <section id="home" className="relative overflow-hidden pt-32 pb-24 lg:pt-40 lg:pb-32">
         <div
           aria-hidden
-          className="absolute -top-40 -right-40 h-[520px] w-[520px] rounded-full opacity-40 blur-3xl"
-          style={{ background: "radial-gradient(circle, oklch(0.78 0.13 85 / .35), transparent 70%)" }}
+          className="absolute inset-0 -z-10"
+          style={{
+            backgroundImage: `url(${HOSPITAL_BG})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            filter: "blur(28px)",
+            transform: "scale(1.1)",
+            opacity: 0.18,
+          }}
         />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-background/70 via-background/85 to-background" />
         <div
           aria-hidden
-          className="absolute top-1/2 -left-40 h-[420px] w-[420px] rounded-full opacity-30 blur-3xl"
-          style={{ background: "radial-gradient(circle, oklch(0.38 0.08 170 / .35), transparent 70%)" }}
+          className="absolute -top-40 -right-40 h-[520px] w-[520px] rounded-full opacity-40 blur-3xl"
+          style={{
+            background: "radial-gradient(circle, oklch(0.78 0.13 85 / .35), transparent 70%)",
+          }}
         />
 
         <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-6 lg:grid-cols-12">
@@ -193,23 +202,26 @@ function Index() {
             </h1>
             <p className="mt-8 max-w-xl text-lg leading-relaxed text-muted-foreground">
               Senior Physician and Cardiologist with over four decades of practice in Tuticorin.
-              Gold medalist in MD (Internal Medicine). Founder of Sundaram Arulrhaj Hospital — an
-              ISO 9001:2015 certified multi‑specialty centre with comprehensive tertiary care under
-              a single roof.
+              Gold medalist in MD (Internal Medicine). Founder of Sundaram Arulrhaj Hospital — the
+              first ISO 9001:2015 certified 100-bedded cardiac and multi-specialty hospital in the
+              region, with tertiary medical care under a single roof.
             </p>
             <div className="mt-10 flex flex-wrap items-center gap-4">
               <a
                 href="https://drsarulrhaj.com/Robust%20Indian%20Healthcare%20Reforming%20leading%20to%20UHC%202%20(3).doc"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-medium text-primary-foreground hover:opacity-90 transition"
               >
-                UHC Position Document
-                <span aria-hidden>↗</span>
+                UHC Position Document <span aria-hidden>↗</span>
               </a>
               <a
                 href="https://drsarulrhaj.com/API%20Digital%20e-book%202020.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-6 py-3 text-sm font-medium text-primary hover:bg-secondary transition"
               >
-                API Digital E‑book
+                API Digital E-book
               </a>
             </div>
 
@@ -266,28 +278,93 @@ function Index() {
           </div>
           <div className="space-y-6 text-lg leading-relaxed text-foreground/85 lg:col-span-8">
             <p>
-              Born and raised in Tuticorin — a coastal city on the southern tip of India — by
-              ambitious parents who invested in their son’s education with the dream of seeing him
-              serve the Pearl City as an effective and compassionate physician.
+              Born and brought up in Tuticorin — a semi-urban city on the southern coast of India —
+              by ambitious parents who gave the best education to their son to see him as an
+              effective and efficient doctor for the Pearl City.
             </p>
             <p>
-              That dream was honoured with a Gold Medal in MD (Internal Medicine) and more than
-              forty‑five years of practice in Tuticorin as a Senior Physician with a special
-              interest in cardiology and intensive care.
+              That dream was fulfilled with a Gold Medal in MD (Medicine) and more than forty-five
+              years of professional service in Tuticorin as a Senior Physician with special
+              expertise in cardiology and intensive care.
             </p>
             <p>
-              With the trust of the community and the support of professional colleagues, Sundaram
-              Arulrhaj Hospital was established — today an ISO 9001:2015 certified 100‑bedded
-              cardiac and multi‑specialty hospital bringing tertiary medical care together under a
-              single roof.
+              With the support of the people and professional colleagues, the present Sundaram
+              Arulrhaj Hospital was born — the first ISO 9001:2015 certified 100-bedded cardiac and
+              multi-specialty hospital with all tertiary care medical facilities under one roof.
             </p>
           </div>
         </div>
       </section>
 
-      {/* SERVICES / RESOURCES */}
-      <section id="leadership" className="relative py-24">
+      {/* VISION & MISSION */}
+      <section id="vision" className="relative overflow-hidden py-24">
+        <div
+          aria-hidden
+          className="absolute inset-0 -z-10"
+          style={{
+            backgroundImage: `url(${HOSPITAL_BG})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            filter: "blur(22px)",
+            transform: "scale(1.08)",
+            opacity: 0.15,
+          }}
+        />
+        <div className="absolute inset-0 -z-10 bg-background/80" />
+
         <div className="mx-auto max-w-7xl px-6">
+          <div className="max-w-2xl">
+            <div className="hairline text-muted-foreground">Vision · Mission · Values</div>
+            <h2 className="mt-4 font-serif text-4xl leading-tight text-primary lg:text-5xl">
+              The principles that guide a life in medicine.
+            </h2>
+          </div>
+          <div className="mt-14 grid gap-6 md:grid-cols-3">
+            {[
+              {
+                k: "Vision",
+                t: "A healthier Pearl City.",
+                b: "To make world-class tertiary medical care accessible to every family in Tuticorin and the southern coast — without anyone having to travel for help.",
+              },
+              {
+                k: "Mission",
+                t: "Compassion first, always.",
+                b: "To practise modern medicine with rigour, to teach the next generation of doctors, and to advocate for public health, the environment and the integrity of the profession.",
+              },
+              {
+                k: "Values",
+                t: "Integrity. Service. Science.",
+                b: "Evidence-based care, honest counsel, lifelong learning, and an unwavering 'No to Mixopathy' — modern medicine must remain a distinct discipline.",
+              },
+            ].map((c) => (
+              <article
+                key={c.k}
+                className="rounded-2xl border border-border bg-card/80 p-7 shadow-sm backdrop-blur"
+              >
+                <div className="hairline text-accent-foreground/70">{c.k}</div>
+                <h3 className="mt-5 font-serif text-2xl text-primary">{c.t}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{c.b}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* SERVICES / RESOURCES */}
+      <section id="leadership" className="relative overflow-hidden py-24">
+        <img
+          src={SERVICE_ANGLE}
+          alt=""
+          aria-hidden
+          className="pointer-events-none absolute -top-10 right-0 w-72 opacity-40"
+        />
+        <img
+          src={SERVICE_ELLIPSE}
+          alt=""
+          aria-hidden
+          className="pointer-events-none absolute bottom-10 left-0 w-56 opacity-30"
+        />
+        <div className="relative mx-auto max-w-7xl px-6">
           <div className="flex flex-wrap items-end justify-between gap-6">
             <div className="max-w-xl">
               <div className="hairline text-muted-foreground">Services & Knowledge</div>
@@ -329,11 +406,26 @@ function Index() {
         </div>
       </section>
 
-      {/* PILLARS */}
-      <section id="health" className="relative overflow-hidden border-y border-border bg-primary py-24 text-primary-foreground">
+      {/* PILLARS — with blurred hospital backdrop */}
+      <section
+        id="health"
+        className="relative overflow-hidden border-y border-border py-24 text-primary-foreground"
+      >
         <div
           aria-hidden
-          className="absolute inset-0 opacity-[0.06]"
+          className="absolute inset-0 -z-10"
+          style={{
+            backgroundImage: `url(${HOSPITAL_BG})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            filter: "blur(14px)",
+            transform: "scale(1.06)",
+          }}
+        />
+        <div className="absolute inset-0 -z-10 bg-primary/88" />
+        <div
+          aria-hidden
+          className="absolute inset-0 -z-10 opacity-[0.06]"
           style={{
             backgroundImage:
               "linear-gradient(oklch(1 0 0 / .5) 1px, transparent 1px), linear-gradient(90deg, oklch(1 0 0 / .5) 1px, transparent 1px)",
@@ -371,13 +463,13 @@ function Index() {
               Tertiary care for Tuticorin — all under one roof.
             </h2>
             <p className="mt-6 text-lg leading-relaxed text-muted-foreground">
-              The first ISO 9001:2015 certified 100‑bedded cardiac and multi‑specialty hospital in
+              The first ISO 9001:2015 certified 100-bedded cardiac and multi-specialty hospital in
               the region, built on decades of clinical practice, teaching and trust.
             </p>
             <ul className="mt-8 space-y-3 text-foreground/90">
               {[
                 "ISO 9001:2015 certified facility",
-                "100‑bed cardiac & multi‑specialty care",
+                "100-bed cardiac & multi-specialty care",
                 "24×7 emergency and intensive care",
                 "A teaching environment for the next generation",
               ].map((i) => (
@@ -391,7 +483,7 @@ function Index() {
           <figure className="relative">
             <div className="absolute -inset-4 rounded-3xl bg-secondary" aria-hidden />
             <img
-              src="https://images.unsplash.com/photo-1538108149393-fbbd81895907?auto=format&fit=crop&w=1200&q=80"
+              src={HOSPITAL_BG}
               alt="Hospital corridor"
               className="relative rounded-3xl object-cover shadow-xl"
               loading="lazy"
@@ -456,19 +548,65 @@ function Index() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="relative py-24">
-        <div className="mx-auto max-w-5xl px-6 text-center">
-          <div className="hairline text-muted-foreground">In Touch</div>
-          <h2 className="mt-5 font-serif text-4xl leading-tight text-primary lg:text-6xl">
-            For consultations, lectures and collaborations.
-          </h2>
-          <p className="mx-auto mt-6 max-w-xl text-muted-foreground">
-            The clinic and the hospital remain open to colleagues, students and patients alike.
-          </p>
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
+      {/* CONTACT */}
+      <section id="contact" className="relative py-24">
+        <div className="mx-auto max-w-6xl px-6">
+          <div className="text-center">
+            <div className="hairline text-muted-foreground">In Touch</div>
+            <h2 className="mt-5 font-serif text-4xl leading-tight text-primary lg:text-6xl">
+              For consultations, lectures and collaborations.
+            </h2>
+            <p className="mx-auto mt-6 max-w-xl text-muted-foreground">
+              The clinic and the hospital remain open to colleagues, students and patients alike.
+            </p>
+          </div>
+
+          <div className="mt-14 grid gap-6 md:grid-cols-3">
+            {[
+              {
+                k: "Phone",
+                v: "+91 99945 80001",
+                v2: "+91 94874 80001",
+                href: "tel:+919994580001",
+              },
+              {
+                k: "Address",
+                v: "145/5B, Jeyaraj Road,",
+                v2: "Tuticorin, Tamil Nadu, South India.",
+                href: "https://maps.google.com/?q=145/5B+Jeyaraj+Road+Tuticorin",
+              },
+              {
+                k: "Email",
+                v: "drarulrhaj@gmail.com",
+                v2: "Response within 24–48 hours.",
+                href: "mailto:drarulrhaj@gmail.com",
+              },
+            ].map((c) => (
+              <a
+                key={c.k}
+                href={c.href}
+                target={c.href.startsWith("http") ? "_blank" : undefined}
+                rel={c.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                className="group rounded-2xl border border-border bg-card p-7 transition hover:border-accent/60 hover:shadow-lg"
+              >
+                <div className="hairline text-accent-foreground/70">{c.k}</div>
+                <div className="mt-5 font-serif text-2xl text-primary">{c.v}</div>
+                <div className="mt-1 text-sm text-muted-foreground">{c.v2}</div>
+                <div className="mt-6 flex items-center gap-2 text-sm font-medium text-primary">
+                  Reach out
+                  <span className="transition-transform group-hover:translate-x-1" aria-hidden>
+                    →
+                  </span>
+                </div>
+              </a>
+            ))}
+          </div>
+
+          <div className="mt-12 flex flex-wrap items-center justify-center gap-4">
             <a
               href="https://drsarulrhaj.com/contact.html"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3.5 text-sm font-medium text-primary-foreground hover:opacity-90 transition"
             >
               Contact now <span aria-hidden>→</span>
