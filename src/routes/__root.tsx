@@ -7,6 +7,8 @@ import {
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
+import { SiteHeader } from "@/components/site-header";
+import { SiteFooter } from "@/components/site-footer";
 
 import appCss from "../styles.css?url";
 
@@ -86,9 +88,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/efd2ca7f-6c42-4c25-b39f-633131562c83/id-preview-d98396ed--2380b196-d8e8-4142-8858-c89b6bdfcfaf.lovable.app-1779166117708.png" },
     ],
     links: [
+      { rel: "stylesheet", href: appCss },
       {
         rel: "stylesheet",
-        href: appCss,
+        href: "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap",
       },
     ],
   }),
@@ -117,7 +120,23 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Outlet />
+      <style>{`
+        html { scroll-behavior: smooth; scroll-padding-top: 96px; }
+        body { font-family: 'Inter', system-ui, sans-serif; }
+        .font-serif { font-family: 'Cormorant Garamond', Georgia, serif; }
+        .hairline { letter-spacing: 0.22em; text-transform: uppercase; font-size: 11px; }
+        @keyframes fade-up { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+        .fade-up { animation: fade-up .7s ease-out both; }
+        @keyframes float-y { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        .float-y { animation: float-y 6s ease-in-out infinite; }
+      `}</style>
+      <div className="min-h-screen bg-background text-foreground">
+        <SiteHeader />
+        <main className="pt-20">
+          <Outlet />
+        </main>
+        <SiteFooter />
+      </div>
     </QueryClientProvider>
   );
 }
