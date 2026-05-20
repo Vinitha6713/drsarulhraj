@@ -9,32 +9,45 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as VisionRouteImport } from './routes/vision'
-import { Route as VideosRouteImport } from './routes/videos'
-import { Route as ServicesRouteImport } from './routes/services'
-import { Route as PillarsRouteImport } from './routes/pillars'
+import { Route as ProfileRouteImport } from './routes/profile'
+import { Route as LeaderOfProfessionRouteImport } from './routes/leader-of-profession'
+import { Route as HospitalRouteImport } from './routes/hospital'
+import { Route as GalleryRouteImport } from './routes/gallery'
+import { Route as EducationRouteImport } from './routes/education'
+import { Route as DigitalHealthRouteImport } from './routes/digital-health'
 import { Route as ContactRouteImport } from './routes/contact'
-import { Route as AboutRouteImport } from './routes/about'
+import { Route as BusinessRouteImport } from './routes/business'
+import { Route as AcademicRouteImport } from './routes/academic'
 import { Route as IndexRouteImport } from './routes/index'
 
-const VisionRoute = VisionRouteImport.update({
-  id: '/vision',
-  path: '/vision',
+const ProfileRoute = ProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
   getParentRoute: () => rootRouteImport,
 } as any)
-const VideosRoute = VideosRouteImport.update({
-  id: '/videos',
-  path: '/videos',
+const LeaderOfProfessionRoute = LeaderOfProfessionRouteImport.update({
+  id: '/leader-of-profession',
+  path: '/leader-of-profession',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ServicesRoute = ServicesRouteImport.update({
-  id: '/services',
-  path: '/services',
+const HospitalRoute = HospitalRouteImport.update({
+  id: '/hospital',
+  path: '/hospital',
   getParentRoute: () => rootRouteImport,
 } as any)
-const PillarsRoute = PillarsRouteImport.update({
-  id: '/pillars',
-  path: '/pillars',
+const GalleryRoute = GalleryRouteImport.update({
+  id: '/gallery',
+  path: '/gallery',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EducationRoute = EducationRouteImport.update({
+  id: '/education',
+  path: '/education',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DigitalHealthRoute = DigitalHealthRouteImport.update({
+  id: '/digital-health',
+  path: '/digital-health',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -42,9 +55,14 @@ const ContactRoute = ContactRouteImport.update({
   path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AboutRoute = AboutRouteImport.update({
-  id: '/about',
-  path: '/about',
+const BusinessRoute = BusinessRouteImport.update({
+  id: '/business',
+  path: '/business',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AcademicRoute = AcademicRouteImport.update({
+  id: '/academic',
+  path: '/academic',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -55,100 +73,135 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
+  '/academic': typeof AcademicRoute
+  '/business': typeof BusinessRoute
   '/contact': typeof ContactRoute
-  '/pillars': typeof PillarsRoute
-  '/services': typeof ServicesRoute
-  '/videos': typeof VideosRoute
-  '/vision': typeof VisionRoute
+  '/digital-health': typeof DigitalHealthRoute
+  '/education': typeof EducationRoute
+  '/gallery': typeof GalleryRoute
+  '/hospital': typeof HospitalRoute
+  '/leader-of-profession': typeof LeaderOfProfessionRoute
+  '/profile': typeof ProfileRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
+  '/academic': typeof AcademicRoute
+  '/business': typeof BusinessRoute
   '/contact': typeof ContactRoute
-  '/pillars': typeof PillarsRoute
-  '/services': typeof ServicesRoute
-  '/videos': typeof VideosRoute
-  '/vision': typeof VisionRoute
+  '/digital-health': typeof DigitalHealthRoute
+  '/education': typeof EducationRoute
+  '/gallery': typeof GalleryRoute
+  '/hospital': typeof HospitalRoute
+  '/leader-of-profession': typeof LeaderOfProfessionRoute
+  '/profile': typeof ProfileRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
+  '/academic': typeof AcademicRoute
+  '/business': typeof BusinessRoute
   '/contact': typeof ContactRoute
-  '/pillars': typeof PillarsRoute
-  '/services': typeof ServicesRoute
-  '/videos': typeof VideosRoute
-  '/vision': typeof VisionRoute
+  '/digital-health': typeof DigitalHealthRoute
+  '/education': typeof EducationRoute
+  '/gallery': typeof GalleryRoute
+  '/hospital': typeof HospitalRoute
+  '/leader-of-profession': typeof LeaderOfProfessionRoute
+  '/profile': typeof ProfileRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/about'
+    | '/academic'
+    | '/business'
     | '/contact'
-    | '/pillars'
-    | '/services'
-    | '/videos'
-    | '/vision'
+    | '/digital-health'
+    | '/education'
+    | '/gallery'
+    | '/hospital'
+    | '/leader-of-profession'
+    | '/profile'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/about'
+    | '/academic'
+    | '/business'
     | '/contact'
-    | '/pillars'
-    | '/services'
-    | '/videos'
-    | '/vision'
+    | '/digital-health'
+    | '/education'
+    | '/gallery'
+    | '/hospital'
+    | '/leader-of-profession'
+    | '/profile'
   id:
     | '__root__'
     | '/'
-    | '/about'
+    | '/academic'
+    | '/business'
     | '/contact'
-    | '/pillars'
-    | '/services'
-    | '/videos'
-    | '/vision'
+    | '/digital-health'
+    | '/education'
+    | '/gallery'
+    | '/hospital'
+    | '/leader-of-profession'
+    | '/profile'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  AboutRoute: typeof AboutRoute
+  AcademicRoute: typeof AcademicRoute
+  BusinessRoute: typeof BusinessRoute
   ContactRoute: typeof ContactRoute
-  PillarsRoute: typeof PillarsRoute
-  ServicesRoute: typeof ServicesRoute
-  VideosRoute: typeof VideosRoute
-  VisionRoute: typeof VisionRoute
+  DigitalHealthRoute: typeof DigitalHealthRoute
+  EducationRoute: typeof EducationRoute
+  GalleryRoute: typeof GalleryRoute
+  HospitalRoute: typeof HospitalRoute
+  LeaderOfProfessionRoute: typeof LeaderOfProfessionRoute
+  ProfileRoute: typeof ProfileRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/vision': {
-      id: '/vision'
-      path: '/vision'
-      fullPath: '/vision'
-      preLoaderRoute: typeof VisionRouteImport
+    '/profile': {
+      id: '/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof ProfileRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/videos': {
-      id: '/videos'
-      path: '/videos'
-      fullPath: '/videos'
-      preLoaderRoute: typeof VideosRouteImport
+    '/leader-of-profession': {
+      id: '/leader-of-profession'
+      path: '/leader-of-profession'
+      fullPath: '/leader-of-profession'
+      preLoaderRoute: typeof LeaderOfProfessionRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/services': {
-      id: '/services'
-      path: '/services'
-      fullPath: '/services'
-      preLoaderRoute: typeof ServicesRouteImport
+    '/hospital': {
+      id: '/hospital'
+      path: '/hospital'
+      fullPath: '/hospital'
+      preLoaderRoute: typeof HospitalRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/pillars': {
-      id: '/pillars'
-      path: '/pillars'
-      fullPath: '/pillars'
-      preLoaderRoute: typeof PillarsRouteImport
+    '/gallery': {
+      id: '/gallery'
+      path: '/gallery'
+      fullPath: '/gallery'
+      preLoaderRoute: typeof GalleryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/education': {
+      id: '/education'
+      path: '/education'
+      fullPath: '/education'
+      preLoaderRoute: typeof EducationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/digital-health': {
+      id: '/digital-health'
+      path: '/digital-health'
+      fullPath: '/digital-health'
+      preLoaderRoute: typeof DigitalHealthRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -158,11 +211,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/about': {
-      id: '/about'
-      path: '/about'
-      fullPath: '/about'
-      preLoaderRoute: typeof AboutRouteImport
+    '/business': {
+      id: '/business'
+      path: '/business'
+      fullPath: '/business'
+      preLoaderRoute: typeof BusinessRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/academic': {
+      id: '/academic'
+      path: '/academic'
+      fullPath: '/academic'
+      preLoaderRoute: typeof AcademicRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -177,13 +237,26 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  AboutRoute: AboutRoute,
+  AcademicRoute: AcademicRoute,
+  BusinessRoute: BusinessRoute,
   ContactRoute: ContactRoute,
-  PillarsRoute: PillarsRoute,
-  ServicesRoute: ServicesRoute,
-  VideosRoute: VideosRoute,
-  VisionRoute: VisionRoute,
+  DigitalHealthRoute: DigitalHealthRoute,
+  EducationRoute: EducationRoute,
+  GalleryRoute: GalleryRoute,
+  HospitalRoute: HospitalRoute,
+  LeaderOfProfessionRoute: LeaderOfProfessionRoute,
+  ProfileRoute: ProfileRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}

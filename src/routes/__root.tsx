@@ -74,24 +74,25 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Dr Sarul Rhaj Refresh is a modern, customer-attractive website redesign." },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Dr Sarul Rhaj Refresh is a modern, customer-attractive website redesign." },
+      { title: "Dr. S. Arulrhaj — Senior Physician & Cardiologist, Tuticorin" },
+      {
+        name: "description",
+        content:
+          "Official website of Dr. S. Arulrhaj — Senior Physician, Cardiologist and founder of Sundaram Arulrhaj Hospital, Tuticorin.",
+      },
+      { property: "og:title", content: "Dr. S. Arulrhaj" },
+      {
+        property: "og:description",
+        content: "Senior Physician, Cardiologist and founder of Sundaram Arulrhaj Hospital, Tuticorin.",
+      },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
-      { name: "twitter:title", content: "Lovable App" },
-      { name: "twitter:description", content: "Dr Sarul Rhaj Refresh is a modern, customer-attractive website redesign." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/efd2ca7f-6c42-4c25-b39f-633131562c83/id-preview-d98396ed--2380b196-d8e8-4142-8858-c89b6bdfcfaf.lovable.app-1779166117708.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/efd2ca7f-6c42-4c25-b39f-633131562c83/id-preview-d98396ed--2380b196-d8e8-4142-8858-c89b6bdfcfaf.lovable.app-1779166117708.png" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap",
       },
     ],
   }),
@@ -121,18 +122,14 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <style>{`
-        html { scroll-behavior: smooth; scroll-padding-top: 96px; }
-        body { font-family: 'Inter', system-ui, sans-serif; }
+        html { scroll-behavior: smooth; scroll-padding-top: 112px; }
+        body { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
         .font-serif { font-family: 'Cormorant Garamond', Georgia, serif; }
         .hairline { letter-spacing: 0.22em; text-transform: uppercase; font-size: 11px; }
-        @keyframes fade-up { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
-        .fade-up { animation: fade-up .7s ease-out both; }
-        @keyframes float-y { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-        .float-y { animation: float-y 6s ease-in-out infinite; }
       `}</style>
       <div className="min-h-screen bg-background text-foreground">
         <SiteHeader />
-        <main className="pt-20">
+        <main>
           <Outlet />
         </main>
         <SiteFooter />
