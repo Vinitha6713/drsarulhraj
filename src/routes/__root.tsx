@@ -120,7 +120,23 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Outlet />
+      <style>{`
+        html { scroll-behavior: smooth; scroll-padding-top: 96px; }
+        body { font-family: 'Inter', system-ui, sans-serif; }
+        .font-serif { font-family: 'Cormorant Garamond', Georgia, serif; }
+        .hairline { letter-spacing: 0.22em; text-transform: uppercase; font-size: 11px; }
+        @keyframes fade-up { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+        .fade-up { animation: fade-up .7s ease-out both; }
+        @keyframes float-y { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        .float-y { animation: float-y 6s ease-in-out infinite; }
+      `}</style>
+      <div className="min-h-screen bg-background text-foreground">
+        <SiteHeader />
+        <main className="pt-20">
+          <Outlet />
+        </main>
+        <SiteFooter />
+      </div>
     </QueryClientProvider>
   );
 }
