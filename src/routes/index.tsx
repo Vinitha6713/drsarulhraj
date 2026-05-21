@@ -11,7 +11,7 @@ import {
   VIDEO_BLOCKS,
   WELCOME_TEXT,
 } from "@/components/site-data";
-import { FadeIn, SlideIn, StaggerContainer, StaggerItem, ScaleIn } from "@/components/motion";
+import { FadeIn, SlideIn, StaggerContainer, StaggerItem, ScaleIn, Counter } from "@/components/motion";
 import { HeroBanner } from "@/components/content-layout";
 
 export const Route = createFileRoute("/")({
@@ -59,6 +59,71 @@ function Home() {
             </div>
           </a>
         </FadeIn>
+      </section>
+
+      {/* Interactive Statistics Section */}
+      <section className="relative overflow-hidden py-10 bg-gradient-to-b from-transparent to-slate-50/50 dark:to-slate-900/10">
+        <div className="mx-auto max-w-5xl px-6">
+          <StaggerContainer className="grid gap-6 grid-cols-2 md:grid-cols-4">
+            {[
+              { label: "Years of Service", value: 45, suffix: "+" },
+              { label: "ICU Bed Strength", value: 100, suffix: "+" },
+              { label: "PG Teaching Tenure", value: 15, suffix: "+ Yrs" },
+              { label: "CMA Countries Represented", value: 54, suffix: "" },
+            ].map((stat, idx) => (
+              <StaggerItem key={idx}>
+                <div className="glass-card flex flex-col justify-center items-center p-6 text-center rounded-2xl border border-white/60 bg-white/30 dark:bg-slate-900/30 shadow-md hover:border-brand/40 transition">
+                  <div className="text-4xl md:text-5xl font-black text-brand-dark dark:text-brand tracking-tight">
+                    <Counter value={stat.value} suffix={stat.suffix} />
+                  </div>
+                  <div className="mt-2 text-xs font-bold text-muted-foreground uppercase tracking-widest leading-relaxed">
+                    {stat.label}
+                  </div>
+                </div>
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
+        </div>
+      </section>
+
+      {/* Slogan Marquee Ticker */}
+      <section className="relative w-full overflow-hidden border-y border-slate-100 dark:border-slate-800/40 bg-white/20 dark:bg-slate-900/10 py-5 backdrop-blur-sm">
+        <div className="flex select-none overflow-hidden">
+          <div className="animate-marquee flex gap-12 text-sm font-semibold tracking-[0.15em] text-primary/60 dark:text-white/40 uppercase whitespace-nowrap">
+            {[
+              "Evidence-Based Modern Medicine",
+              "Commonwealth Medical Association Foundation",
+              "Tuticorin Mecca of Healthcare",
+              "Care · Charity · Commitment",
+              "Indian Medical Association Leadership",
+              "Association of Physicians of India",
+              "First ISO 9001 Certified Tertiary Hospital in South TN",
+              "Say No to Mixopathy advocacy",
+            ].map((text, idx) => (
+              <div key={idx} className="flex items-center gap-12">
+                <span>{text}</span>
+                <span className="h-1.5 w-1.5 rounded-full bg-brand" />
+              </div>
+            ))}
+          </div>
+          <div className="animate-marquee flex gap-12 text-sm font-semibold tracking-[0.15em] text-primary/60 dark:text-white/40 uppercase whitespace-nowrap" aria-hidden>
+            {[
+              "Evidence-Based Modern Medicine",
+              "Commonwealth Medical Association Foundation",
+              "Tuticorin Mecca of Healthcare",
+              "Care · Charity · Commitment",
+              "Indian Medical Association Leadership",
+              "Association of Physicians of India",
+              "First ISO 9001 Certified Tertiary Hospital in South TN",
+              "Say No to Mixopathy advocacy",
+            ].map((text, idx) => (
+              <div key={idx} className="flex items-center gap-12">
+                <span>{text}</span>
+                <span className="h-1.5 w-1.5 rounded-full bg-brand" />
+              </div>
+            ))}
+          </div>
+        </div>
       </section>
 
       {/* Biography Section - Redesigned with Grid Accents and Balanced Space */}
