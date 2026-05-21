@@ -111,7 +111,7 @@ const masonryAspects = ["aspect-[4/5]", "aspect-square", "aspect-[3/4]", "aspect
 export function GalleryGrid({
   images,
 }: {
-  images: readonly { src: string; alt: string }[];
+  images: readonly { src: string; alt: string; title?: string; desc?: string }[];
 }) {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
