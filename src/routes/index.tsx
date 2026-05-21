@@ -63,6 +63,8 @@ function Home() {
 
       {/* Biography Section - Redesigned with Grid Accents and Balanced Space */}
       <section className="relative overflow-hidden border-y border-border bg-white dark:bg-slate-900/40 py-24 md:py-32">
+        <div className="orb orb-brand h-[420px] w-[420px] -top-32 -left-24" aria-hidden />
+        <div className="orb orb-medical h-[380px] w-[380px] bottom-[-120px] right-[-80px]" aria-hidden />
         <div
           className="pointer-events-none absolute right-0 top-1/2 h-[120%] w-1/2 -translate-y-1/2 bg-[radial-gradient(circle,oklch(0.62_0.09_235/0.05),transparent_65%)]"
           aria-hidden
