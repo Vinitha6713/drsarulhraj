@@ -89,10 +89,10 @@ function Home() {
                 <span className="inline-block px-3.5 py-1 rounded-full bg-medical/10 text-medical-deep dark:text-primary font-bold text-[10px] uppercase tracking-widest mb-6 border border-medical/20">
                   Who We Are
                 </span>
-                <h2 className="text-4xl font-extrabold tracking-tight text-primary dark:text-white md:text-6xl md:leading-[1.08]">
-                  WELCOME TO MY WEBSITE
+                <h2 className="text-4xl font-extrabold tracking-tight md:text-6xl md:leading-[1.08]">
+                  <span className="animated-gradient-text">WELCOME TO MY WEBSITE</span>
                 </h2>
-                <div className="mt-8 h-1 w-24 rounded-full bg-gradient-to-r from-brand to-medical" aria-hidden />
+                <div className="mt-8 h-1 w-24 rounded-full bg-gradient-to-r from-brand to-medical animate-pulse-glow" aria-hidden />
                 <p className="mt-10 text-[16px] font-normal leading-[1.85] text-muted-foreground dark:text-slate-300 md:text-lg">
                   {WELCOME_TEXT}
                 </p>
