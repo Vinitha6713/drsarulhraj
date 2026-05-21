@@ -1,7 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ExternalLink } from "lucide-react";
-import { FadeIn, SlideIn } from "@/components/motion";
-import { HeroBanner } from "@/components/content-layout";
+import { ExternalLink, Download, FileText, Video, ArrowRight } from "lucide-react";
 import {
   API_EBOOK,
   PILLARS,
@@ -13,6 +11,8 @@ import {
   VIDEO_BLOCKS,
   WELCOME_TEXT,
 } from "@/components/site-data";
+import { FadeIn, SlideIn, StaggerContainer, StaggerItem, ScaleIn } from "@/components/motion";
+import { HeroBanner } from "@/components/content-layout";
 
 export const Route = createFileRoute("/")({
   component: Home,
@@ -33,131 +33,176 @@ function Home() {
     <>
       <HeroBanner />
 
-      <section className="section-mesh py-16 md:py-24">
+      {/* Position Document Callout - Redesigned as a Premium Editorial Announcement */}
+      <section className="section-mesh py-20 md:py-28 relative z-20 -mt-16">
         <FadeIn className="mx-auto max-w-5xl px-6">
           <a href={UHC_DOC} download className="group block">
-            <div className="glass-card relative overflow-hidden rounded-3xl p-8 text-center transition duration-500 hover:shadow-2xl hover:shadow-medical/10 md:p-12">
+            <div className="glass-card relative overflow-hidden rounded-[2.5rem] p-10 text-center border border-white/60 bg-white/45 shadow-2xl transition-all duration-500 hover:shadow-medical/15 hover:border-brand/40">
               <div
-                className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand to-transparent opacity-80"
+                className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-transparent via-brand to-transparent opacity-80"
                 aria-hidden
               />
-              <h1 className="font-serif text-2xl font-semibold leading-snug tracking-tight text-primary transition group-hover:text-medical-deep md:text-4xl md:leading-tight">
-                <span className="bg-gradient-to-r from-primary via-medical-deep to-primary bg-clip-text text-transparent">
-                  Robust<span className="text-brand">Indian</span> HealthCare Reforming Towards{" "}
-                  <span className="text-brand">UHC Position Document</span>
+              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand/10 text-brand-dark dark:text-brand font-bold text-[11px] uppercase tracking-widest mb-6 border border-brand/20">
+                <FileText className="h-4.5 w-4.5" />
+                Featured Document
+              </span>
+              <h1 className="text-3xl font-extrabold leading-tight tracking-tight text-primary transition group-hover:text-medical-deep md:text-5xl md:leading-tight">
+                <span className="bg-gradient-to-r from-primary via-medical-deep to-primary bg-clip-text text-transparent dark:from-white dark:to-slate-300">
+                  Robust <span className="text-brand-dark dark:text-brand">Indian</span> HealthCare Reforming Towards{" "}
+                  <span className="text-brand-dark dark:text-brand">UHC Position Document</span>
                 </span>
               </h1>
+              <div className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-medical-deep dark:text-primary group-hover:gap-3 transition-all">
+                Download Position Document
+                <Download className="h-4 w-4" />
+              </div>
             </div>
           </a>
         </FadeIn>
       </section>
 
-      <section className="relative overflow-hidden border-y border-border/40 bg-white py-20 md:py-28">
+      {/* Biography Section - Redesigned with Grid Accents and Balanced Space */}
+      <section className="relative overflow-hidden border-y border-border bg-white dark:bg-slate-900/40 py-24 md:py-32">
         <div
-          className="pointer-events-none absolute right-0 top-1/2 h-[120%] w-1/2 -translate-y-1/2 bg-[radial-gradient(circle,oklch(0.92_0.04_15/0.5),transparent_65%)]"
+          className="pointer-events-none absolute right-0 top-1/2 h-[120%] w-1/2 -translate-y-1/2 bg-[radial-gradient(circle,oklch(0.62_0.09_235/0.05),transparent_65%)]"
           aria-hidden
         />
-        <div className="mx-auto grid max-w-7xl items-center gap-14 px-6 lg:grid-cols-2 lg:gap-20">
-          <SlideIn from="left">
-            <div className="group/img relative">
-              <div
-                className="absolute -inset-2 rounded-[2rem] bg-gradient-to-tr from-brand/25 via-transparent to-medical/20 opacity-70 blur-xl transition group-hover/img:opacity-100"
-                aria-hidden
-              />
-              <div className="image-frame relative">
-                <img src={PORTRAIT} alt="about image" className="w-full object-cover" loading="lazy" />
+        <div className="mx-auto grid max-w-7xl items-center gap-14 px-6 lg:grid-cols-12 lg:gap-20">
+          <div className="lg:col-span-5">
+            <SlideIn from="left">
+              <div className="group/img relative">
+                <div
+                  className="absolute -inset-3 rounded-[2.5rem] bg-gradient-to-tr from-brand/20 via-transparent to-medical/15 opacity-60 blur-2xl transition group-hover/img:opacity-100"
+                  aria-hidden
+                />
+                <div className="image-frame relative overflow-hidden rounded-[2.2rem] border border-white/80 bg-white/40 shadow-2xl">
+                  <img src={PORTRAIT} alt="about image" className="w-full object-cover" loading="lazy" />
+                </div>
               </div>
-            </div>
-          </SlideIn>
-          <SlideIn from="right" delay={0.08}>
-            <div className="relative">
-              <h2 className="font-serif text-3xl font-semibold tracking-tight text-primary md:text-5xl md:leading-[1.08]">
-                WELCOME TO MY WEBSITE
-              </h2>
-              <div className="mt-8 h-px w-24 bg-gradient-to-r from-brand to-medical" aria-hidden />
-              <h6 className="mt-8 text-base font-normal leading-[1.8] text-muted-foreground md:text-lg">
-                {WELCOME_TEXT}
-              </h6>
-            </div>
-          </SlideIn>
+            </SlideIn>
+          </div>
+          <div className="lg:col-span-7">
+            <SlideIn from="right" delay={0.08}>
+              <div className="relative">
+                <span className="inline-block px-3.5 py-1 rounded-full bg-medical/10 text-medical-deep dark:text-primary font-bold text-[10px] uppercase tracking-widest mb-6 border border-medical/20">
+                  Who We Are
+                </span>
+                <h2 className="text-4xl font-extrabold tracking-tight text-primary dark:text-white md:text-6xl md:leading-[1.08]">
+                  WELCOME TO MY WEBSITE
+                </h2>
+                <div className="mt-8 h-1 w-24 rounded-full bg-gradient-to-r from-brand to-medical" aria-hidden />
+                <p className="mt-10 text-[16px] font-normal leading-[1.85] text-muted-foreground dark:text-slate-300 md:text-lg">
+                  {WELCOME_TEXT}
+                </p>
+              </div>
+            </SlideIn>
+          </div>
         </div>
       </section>
 
-      <section className="relative overflow-hidden section-mesh py-24 md:py-32">
+      {/* Services and Pillars Section - Redesigned with Modern Grid and Custom Cards */}
+      <section className="relative overflow-hidden section-mesh py-28 md:py-36">
         <img
           src={SERVICE_ANGLE}
           alt="hero angle"
-          className="pointer-events-none absolute -right-4 top-8 w-44 opacity-[0.35] md:w-80 md:opacity-45"
+          className="pointer-events-none absolute -right-4 top-8 w-44 opacity-20 md:w-80 md:opacity-25"
           aria-hidden
         />
         <img
           src={SERVICE_ELLIPSE}
           alt="Ellipse"
-          className="pointer-events-none absolute -left-8 bottom-12 w-36 opacity-30 md:w-64"
+          className="pointer-events-none absolute -left-8 bottom-12 w-36 opacity-15 md:w-64"
           aria-hidden
         />
 
         <div className="relative mx-auto max-w-5xl px-6 text-center">
-          <FadeIn>
-            <a href={API_EBOOK} download>
-              <h1 className="font-serif text-3xl font-semibold text-primary underline decoration-brand/50 decoration-2 underline-offset-8 transition hover:text-medical-deep md:text-4xl">
-                API Digital E-book
-              </h1>
+          <FadeIn className="flex flex-wrap items-center justify-center gap-6 mb-10">
+            <a href={API_EBOOK} download className="group">
+              <div className="glass-card flex items-center justify-center gap-3.5 px-8 py-5 rounded-2xl border border-white/60 bg-white/40 shadow-xl transition hover:border-brand/40">
+                <Download className="h-6 w-6 text-brand-dark group-hover:scale-110 transition duration-300" />
+                <span className="text-xl font-bold tracking-tight text-primary dark:text-white group-hover:text-medical-deep transition">
+                  API Digital E-book
+                </span>
+              </div>
+            </a>
+            <a href={UHC_DOC} download className="group">
+              <div className="glass-card flex items-center justify-center gap-3.5 px-8 py-5 rounded-2xl border border-white/60 bg-white/40 shadow-xl transition hover:border-medical/40">
+                <FileText className="h-6 w-6 text-medical group-hover:scale-110 transition duration-300" />
+                <span className="text-xl font-bold tracking-tight text-primary dark:text-white group-hover:text-medical-deep transition">
+                  UHC Position Document
+                </span>
+              </div>
             </a>
           </FadeIn>
-          <FadeIn delay={0.1} className="mt-16">
-            <h2 className="font-serif text-3xl font-semibold tracking-tight text-primary md:text-5xl">Services We Offer</h2>
+          <FadeIn delay={0.1} className="mt-6">
+            <span className="inline-block px-3.5 py-1 rounded-full bg-gradient-to-r from-medical/10 to-brand/10 text-medical-deep dark:text-primary font-bold text-[10px] uppercase tracking-widest mb-6 border border-white/40">
+              Our Capabilities
+            </span>
+            <h2 className="text-4xl font-extrabold tracking-tight text-primary dark:text-white md:text-6xl">
+              Services We Offer
+            </h2>
           </FadeIn>
         </div>
 
-        <div className="relative mx-auto mt-14 grid max-w-5xl gap-4 px-6 sm:grid-cols-2">
+        {/* Resources Grid */}
+        <StaggerContainer className="relative mx-auto mt-16 grid max-w-5xl gap-6 px-6 sm:grid-cols-2">
           {RESOURCES.map((r, i) => (
-            <FadeIn key={r.title} delay={0.07 * i}>
+            <StaggerItem key={r.title}>
               <a
                 href={r.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group/card glass-card flex items-center justify-between gap-4 rounded-2xl p-6 transition duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-medical/10 md:p-8"
+                className="group/card glass-card flex items-center justify-between gap-6 rounded-2xl p-7 border border-white/60 bg-white/40 transition hover:scale-[1.02]"
               >
-                <h2 className="text-left font-serif text-xl font-semibold text-primary underline decoration-brand/40 decoration-1 underline-offset-4 transition group-hover/card:text-medical-deep md:text-2xl">
-                  {r.title}
-                </h2>
-                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-medical/15 to-brand/20 text-medical-deep transition group-hover/card:scale-110">
-                  <ExternalLink className="h-5 w-5" />
+                <div className="space-y-2 text-left">
+                  <h3 className="text-left text-xl font-bold text-primary dark:text-white transition group-hover/card:text-medical-deep md:text-2xl">
+                    {r.title}
+                  </h3>
+                  <p className="text-sm leading-relaxed text-muted-foreground dark:text-slate-300">
+                    {r.desc}
+                  </p>
+                </div>
+                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-medical/15 to-brand/20 text-medical-deep transition duration-300 group-hover/card:scale-110 group-hover/card:shadow-lg group-hover/card:shadow-medical/10">
+                  <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover/card:translate-x-1" />
                 </span>
               </a>
-            </FadeIn>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
 
-        <div className="relative mx-auto mt-20 grid max-w-7xl gap-5 px-6 sm:grid-cols-2 lg:grid-cols-4">
+        {/* Pillars Grid */}
+        <StaggerContainer className="relative mx-auto mt-24 grid max-w-7xl gap-6 px-6 sm:grid-cols-2 lg:grid-cols-4">
           {PILLARS.map((p, i) => (
-            <FadeIn key={p.title} delay={0.08 * i}>
+            <StaggerItem key={p.title}>
               <div
-                className={`${pillarClass[p.style]} group/pillar relative h-full overflow-hidden rounded-2xl border-2 p-7 shadow-md transition duration-300 hover:-translate-y-1.5 hover:shadow-2xl`}
+                className={`${pillarClass[p.style]} group/pillar relative h-full overflow-hidden rounded-[2rem] border p-8 shadow-lg transition duration-500 hover:scale-[1.03] hover:shadow-2xl`}
               >
                 <div
                   className="absolute inset-0 bg-gradient-to-br from-white/40 to-transparent opacity-0 transition group-hover/pillar:opacity-100"
                   aria-hidden
                 />
-                <h4 className="relative font-serif text-lg font-bold text-primary underline decoration-1">{p.title}</h4>
-                <p className="relative mt-4 text-sm leading-relaxed text-muted-foreground">{p.body}</p>
+                <span className="text-[10px] font-extrabold uppercase tracking-widest text-medical-deep/70 dark:text-primary/70">
+                  Pillar 0{i + 1}
+                </span>
+                <h4 className="relative text-xl font-bold text-primary dark:text-white mt-4">{p.title}</h4>
+                <p className="relative mt-5 text-[15px] leading-relaxed text-muted-foreground dark:text-slate-300">{p.body}</p>
               </div>
-            </FadeIn>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
 
-        <div className="relative mx-auto mt-24 max-w-7xl space-y-16 px-6 md:space-y-24">
+        {/* Video Lectures Section - Redesigned with Curved Embed Wrappers and Dark Mode support */}
+        <div className="relative mx-auto mt-36 max-w-7xl space-y-24 px-6 md:space-y-36">
           {VIDEO_BLOCKS.map((v, i) => (
-            <FadeIn key={`${v.title}-${i}`} delay={0.05 * i}>
+            <ScaleIn key={`${v.title}-${i}`}>
               <div
-                className="grid items-center gap-10 rounded-[2rem] border border-white/60 bg-gradient-to-br from-white via-[#faf8fc] to-[#f0f4fa] p-6 shadow-xl md:grid-cols-2 md:gap-12 md:p-12"
+                className="grid items-center gap-12 rounded-[2.5rem] border border-white/60 bg-gradient-to-br from-white via-[#faf9fc] to-[#f2f6fc] dark:from-slate-800/80 dark:via-slate-900/60 dark:to-slate-950/40 p-8 shadow-xl md:grid-cols-2 md:gap-20 md:p-16 transition-all duration-500 hover:shadow-2xl hover:border-brand/35"
               >
                 <div
-                  className={`relative aspect-video overflow-hidden rounded-2xl shadow-2xl ring-1 ring-black/5 ${i % 2 === 1 ? "md:order-2" : ""}`}
+                  className={`relative aspect-video overflow-hidden rounded-[2rem] shadow-2xl border border-white/20 ring-1 ring-slate-900/5 group/video ${i % 2 === 1 ? "md:order-2" : ""}`}
                 >
                   <div
-                    className="absolute -inset-1 bg-gradient-to-tr from-brand/30 to-medical/25 opacity-50 blur-xl"
+                    className="absolute -inset-1 bg-gradient-to-tr from-brand/30 to-medical/25 opacity-30 blur-2xl"
                     aria-hidden
                   />
                   <iframe
@@ -166,17 +211,30 @@ function Home() {
                     loading="lazy"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
-                    className="relative h-full w-full rounded-2xl"
+                    className="relative h-full w-full rounded-[2rem]"
                   />
+                  {/* Pulsing Play Overlay */}
+                  <div className="absolute inset-0 flex items-center justify-center pointer-events-none transition duration-500 group-hover/video:scale-105">
+                    <div className="flex h-15 w-15 items-center justify-center rounded-full bg-medical/90 dark:bg-primary/95 text-white shadow-xl animate-pulse-glow border border-white/20">
+                      <svg className="h-6.5 w-6.5 fill-white translate-x-0.5" viewBox="0 0 24 24">
+                        <path d="M8 5v14l11-7z" />
+                      </svg>
+                    </div>
+                  </div>
                 </div>
                 <div className={i % 2 === 1 ? "md:order-1" : ""}>
-                  <h3 className="font-serif text-2xl font-semibold tracking-tight text-primary md:text-4xl">{v.title}</h3>
-                  <p className="mt-5 whitespace-pre-line text-[15px] leading-relaxed text-muted-foreground md:text-lg">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand/10 text-brand-dark dark:text-brand font-bold text-[10px] uppercase tracking-wider mb-6">
+                    <Video className="h-4 w-4" />
+                    Lecture Series
+                  </span>
+                  <h3 className="text-3xl font-extrabold tracking-tight text-primary dark:text-white md:text-5xl">{v.title}</h3>
+                  <div className="mt-8 h-1 w-20 rounded-full bg-gradient-to-r from-brand to-medical" aria-hidden />
+                  <p className="mt-8 whitespace-pre-line text-[16px] leading-relaxed text-muted-foreground dark:text-slate-300 md:text-lg md:leading-[1.75]">
                     {v.text}
                   </p>
                 </div>
               </div>
-            </FadeIn>
+            </ScaleIn>
           ))}
         </div>
       </section>

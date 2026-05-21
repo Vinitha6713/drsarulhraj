@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, ZoomIn } from "lucide-react";
 
 type ImageLightboxProps = {
-  images: readonly { src: string; alt: string }[];
+  images: readonly { src: string; alt: string; title?: string; desc?: string }[];
   initialIndex?: number | null;
   onClose: () => void;
 };
@@ -34,7 +34,7 @@ export function ImageLightbox({ images, initialIndex, onClose }: ImageLightboxPr
     <AnimatePresence>
       {initialIndex != null && (
         <motion.div
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/92 p-4 backdrop-blur-md"
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-[oklch(0.08_0.02_250/0.92)] p-4 backdrop-blur-md"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -52,13 +52,30 @@ export function ImageLightbox({ images, initialIndex, onClose }: ImageLightboxPr
             key={images[index]?.src}
             src={images[index]?.src}
             alt={images[index]?.alt ?? ""}
-            className="max-h-[90vh] max-w-[90vw] rounded-2xl object-contain shadow-[0_25px_80px_rgba(0,0,0,0.5)] ring-1 ring-white/10"
+            className="max-h-[72vh] max-w-[90vw] rounded-2xl object-contain shadow-[0_25px_80px_rgba(15,23,42,0.5)] ring-1 ring-white/10"
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.9, opacity: 0 }}
             transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
             onClick={(e) => e.stopPropagation()}
           />
+          {images[index] && (
+            <div
+              className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 w-full max-w-xl px-6"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="rounded-2xl border border-white/10 bg-black/60 p-5 text-center text-white backdrop-blur-md">
+                <h4 className="text-base font-bold">
+                  {images[index].title ?? images[index].alt}
+                </h4>
+                {images[index].desc && (
+                  <p className="mt-1.5 text-xs text-slate-300 leading-relaxed">
+                    {images[index].desc}
+                  </p>
+                )}
+              </div>
+            </div>
+          )}
           {images.length > 1 && (
             <>
               <button
@@ -102,27 +119,40 @@ export function GalleryGrid({
     <>
       <div className="gallery-masonry">
         {images.map((img, i) => (
-          <div key={img.src} className="gallery-masonry-item">
-            <motion.button
-              type="button"
-              className={`group relative w-full overflow-hidden rounded-2xl border border-white/80 bg-white shadow-lg ring-1 ring-black/[0.04] transition hover:shadow-2xl hover:ring-brand/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-medical ${masonryAspects[i % masonryAspects.length]}`}
-              onClick={() => setLightboxIndex(i)}
-              whileHover={{ y: -4 }}
-              transition={{ duration: 0.25 }}
-            >
-              <img
-                src={img.src}
-                alt={img.alt}
-                loading="lazy"
-                className="h-full w-full object-cover transition duration-700 ease-out group-hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-medical-deep/70 via-transparent to-transparent opacity-0 transition duration-300 group-hover:opacity-100" />
-              <div className="absolute inset-0 flex items-center justify-center opacity-0 transition group-hover:opacity-100">
-                <span className="flex h-14 w-14 items-center justify-center rounded-full bg-white/95 text-medical-deep shadow-xl">
-                  <ZoomIn className="h-6 w-6" />
-                </span>
+          <div key={img.src} className="gallery-masonry-item mb-6">
+            <div className="glass-card flex flex-col overflow-hidden rounded-2xl border border-white/60 bg-white/40 shadow-lg transition-all duration-300 hover:shadow-2xl">
+              <motion.button
+                type="button"
+                className={`group relative w-full overflow-hidden rounded-t-2xl focus:outline-none ${masonryAspects[i % masonryAspects.length]}`}
+                onClick={() => setLightboxIndex(i)}
+                whileHover={{ scale: 1.01 }}
+                transition={{ duration: 0.25 }}
+              >
+                <img
+                  src={img.src}
+                  alt={img.alt}
+                  loading="lazy"
+                  className="h-full w-full object-cover transition duration-700 ease-out group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-medical-deep/70 via-transparent to-transparent opacity-0 transition duration-300 group-hover:opacity-100" />
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 transition group-hover:opacity-100">
+                  <span className="flex h-12 w-12 items-center justify-center rounded-full bg-white/95 text-medical-deep shadow-xl">
+                    <ZoomIn className="h-5 w-5" />
+                  </span>
+                </div>
+              </motion.button>
+              
+              <div className="p-5 text-left border-t border-slate-100/55 dark:border-slate-800/40 bg-white/10">
+                <h4 className="text-[15px] font-bold text-primary dark:text-white uppercase tracking-tight">
+                  {img.title ?? img.alt}
+                </h4>
+                {img.desc && (
+                  <p className="mt-2 text-xs leading-relaxed text-muted-foreground dark:text-slate-400">
+                    {img.desc}
+                  </p>
+                )}
               </div>
-            </motion.button>
+            </div>
           </div>
         ))}
       </div>

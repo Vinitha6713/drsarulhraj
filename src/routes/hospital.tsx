@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Microscope, Radio } from "lucide-react";
+import { Microscope, Radio, ShieldAlert, CheckCircle } from "lucide-react";
 import { HeroBanner, MissionSections } from "@/components/content-layout";
-import { FadeIn } from "@/components/motion";
+import { FadeIn, StaggerContainer, StaggerItem } from "@/components/motion";
 import { PHOTO, SPEECH } from "@/components/site-data";
 
 export const Route = createFileRoute("/hospital")({
@@ -38,113 +38,134 @@ function HospitalPage() {
   return (
     <>
       <HeroBanner />
-      <section className="section-mesh py-20 md:py-28">
+      <section className="section-mesh py-20 md:py-28 relative z-20 -mt-20">
         <div className="mx-auto max-w-7xl px-6">
+          {/* Dual Overlay Editorial Photos */}
           <div className="relative mx-auto max-w-5xl">
             <FadeIn className="relative z-10 ml-auto w-[88%] max-w-2xl">
-              <div className="image-frame overflow-hidden rounded-3xl shadow-2xl">
+              <div className="image-frame overflow-hidden rounded-[2.5rem] shadow-2xl border border-white/60">
                 <img src={PHOTO} alt="Hospital" className="aspect-[4/3] w-full object-cover md:aspect-[5/4]" loading="lazy" />
               </div>
             </FadeIn>
-            <FadeIn delay={0.12} className="relative z-20 -mt-16 mr-auto w-[72%] max-w-md md:-mt-28 md:w-[55%]">
-              <div className="overflow-hidden rounded-3xl border-4 border-white shadow-2xl ring-1 ring-black/5">
+            <FadeIn delay={0.12} className="relative z-20 -mt-16 mr-auto w-[72%] max-w-md md:-mt-28 md:w-[50%]">
+              <div className="overflow-hidden rounded-[2rem] border-4 border-white dark:border-slate-800 shadow-2xl ring-1 ring-slate-900/5">
                 <img src={SPEECH} alt="" className="aspect-[4/3] w-full object-cover" loading="lazy" />
               </div>
             </FadeIn>
           </div>
 
+          {/* Heading */}
           <FadeIn className="mt-20 text-center md:mt-28">
-            <h1 className="font-serif text-3xl font-semibold tracking-tight text-primary md:text-6xl md:leading-[1.05]">
+            <span className="inline-block px-3.5 py-1 rounded-full bg-medical/10 text-medical-deep dark:text-primary font-bold text-[10px] uppercase tracking-widest mb-6 border border-medical/20">
+              Healthcare Institution
+            </span>
+            <h1 className="text-4xl font-extrabold tracking-tight text-primary dark:text-white md:text-7xl md:leading-[1.05]">
               SUNDARAM ARULRHAJ HOSPITALS
             </h1>
-            <p className="mx-auto mt-8 max-w-3xl text-[15px] leading-relaxed text-muted-foreground md:text-lg">
+            <p className="mx-auto mt-8 max-w-3xl text-[16px] leading-relaxed text-muted-foreground dark:text-slate-300 md:text-xl">
               SAH is a 100 bedded, multi-specialty, medical institution in Semi Urban Area, Tuticorin,
-              TamilNadu, India.SAH is being expanded to 200 beds Medical Institution.{" "}
+              TamilNadu, India. SAH is being expanded to 200 beds Medical Institution.{" "}
               <a
                 href="https://www.sah-hospitals.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-medium text-medical underline decoration-brand/60 underline-offset-4 transition hover:text-medical-deep"
+                className="font-semibold text-medical underline decoration-brand/60 underline-offset-4 transition hover:text-medical-deep"
               >
                 www.sah-hospitals.com
               </a>
             </p>
           </FadeIn>
 
-          <FadeIn className="mt-20">
-            <h2 className="text-center font-serif text-2xl font-semibold text-primary md:text-4xl">SPECIALITIES</h2>
-            <ul className="mx-auto mt-10 grid max-w-4xl gap-3 sm:grid-cols-2 lg:grid-cols-2">
+          {/* Specialities Grid */}
+          <div className="mt-28">
+            <div className="text-center mb-12">
+              <span className="inline-block px-3 py-1 rounded-full bg-brand/10 text-brand-dark dark:text-brand font-bold text-[10px] uppercase tracking-widest mb-4">
+                Clinical Excellence
+              </span>
+              <h2 className="text-3xl font-extrabold text-primary dark:text-white md:text-5xl">SPECIALITIES</h2>
+            </div>
+            <StaggerContainer className="mx-auto mt-14 grid max-w-5xl gap-5 sm:grid-cols-2">
               {SPECIALITIES.map((s) => (
-                <li
+                <StaggerItem
                   key={s}
-                  className="group flex items-start gap-3 rounded-2xl border border-white/80 bg-white/90 p-4 text-left text-sm leading-snug text-foreground/90 shadow-md backdrop-blur-sm transition hover:-translate-y-0.5 hover:border-brand/40 hover:shadow-xl md:p-5 md:text-[15px]"
+                  className="group flex items-center gap-5 rounded-2xl border border-white/60 bg-white/40 dark:bg-slate-900/40 p-6 text-left shadow-lg backdrop-blur-md transition-all duration-300 hover:scale-[1.02] hover:border-brand/40"
                 >
-                  <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-gradient-to-br from-brand to-medical shadow-sm" />
-                  {s}
-                </li>
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-medical/15 to-brand/20 text-medical-deep dark:text-primary shadow-inner">
+                    <CheckCircle className="h-5 w-5" />
+                  </span>
+                  <span className="font-bold text-foreground/80 dark:text-foreground/90 text-base md:text-[17px]">{s}</span>
+                </StaggerItem>
               ))}
-            </ul>
-          </FadeIn>
+            </StaggerContainer>
+          </div>
 
-          <FadeIn className="mt-20">
-            <div className="relative overflow-hidden rounded-[2rem] border border-white/60 bg-gradient-to-br from-white via-[#f8fafc] to-[#eef2ff] p-8 text-center shadow-2xl md:p-14">
+          {/* Health Policy Card */}
+          <FadeIn className="mt-28">
+            <div className="relative overflow-hidden rounded-[2.5rem] border border-white/60 bg-gradient-to-br from-white via-[#f8fafc] to-[#eef2ff] dark:from-slate-800/80 dark:via-slate-900/60 dark:to-slate-950/40 p-10 text-center shadow-2xl md:p-16">
               <div
-                className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,oklch(0.85_0.08_15/0.25),transparent_50%)]"
+                className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,oklch(0.62_0.09_235/0.1),transparent_50%)]"
                 aria-hidden
               />
-              <div className="relative">
-                <h2 className="font-serif text-2xl font-semibold text-primary md:text-4xl">SAH HEALTH POLICY</h2>
-                <p className="mt-6 text-base font-semibold tracking-wide text-medical md:text-lg">
-                  WORLD CLASS HEALTH CARE REACHING TO COMMON MAN
-                </p>
-                <p className="mt-2 text-base font-semibold tracking-wide text-medical md:text-lg">
-                  THE BEST HEALTH CARE WITHIN YOUR REACH
-                </p>
-                <p className="mx-auto mt-6 max-w-2xl text-muted-foreground">
+              <div className="relative max-w-3xl mx-auto">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand/10 text-brand-dark dark:text-brand font-bold text-[10px] uppercase tracking-wider mb-6">
+                  <ShieldAlert className="h-4 w-4" />
+                  Our Core Values
+                </span>
+                <h2 className="text-3xl font-extrabold text-primary dark:text-white md:text-5xl tracking-tight">SAH HEALTH POLICY</h2>
+                <div className="mt-8 space-y-3">
+                  <p className="text-lg font-bold tracking-wide text-medical-deep dark:text-primary md:text-xl uppercase">
+                    WORLD CLASS HEALTH CARE REACHING TO COMMON MAN
+                  </p>
+                  <p className="text-lg font-bold tracking-wide text-brand-dark dark:text-brand md:text-xl uppercase">
+                    THE BEST HEALTH CARE WITHIN YOUR REACH
+                  </p>
+                </div>
+                <p className="mx-auto mt-8 max-w-xl text-[15px] font-semibold uppercase tracking-widest text-muted-foreground">
                   CARE, COMMITMENT, CHARITY & QUALITY SERVICES
                 </p>
               </div>
             </div>
           </FadeIn>
 
-          <div className="mt-20 grid gap-8 lg:grid-cols-2 lg:gap-10">
-            <FadeIn>
-              <div className="glass-card h-full rounded-[1.75rem] p-8 md:p-10">
-                <div className="mb-6 flex items-center gap-3">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-medical/15 to-brand/20 text-medical-deep">
-                    <Microscope className="h-6 w-6" />
+          {/* Laboratory and Radiology grid */}
+          <StaggerContainer className="mt-28 grid gap-8 lg:grid-cols-2 lg:gap-12">
+            <StaggerItem>
+              <div className="glass-card h-full rounded-[2.5rem] p-10 md:p-14 border border-white/60 bg-white/40 transition-all hover:shadow-2xl">
+                <div className="mb-8 flex items-center gap-5">
+                  <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-medical/15 to-brand/20 text-medical-deep dark:text-primary shadow-inner">
+                    <Microscope className="h-8 w-8" />
                   </div>
-                  <h3 className="font-serif text-xl font-semibold text-primary md:text-2xl">LABORATORY</h3>
+                  <h3 className="text-2xl font-bold tracking-tight text-primary dark:text-white md:text-3xl">LABORATORY</h3>
                 </div>
-                <ul className="space-y-3 border-t border-border/50 pt-6 text-[15px] leading-relaxed text-muted-foreground">
+                <ul className="space-y-4 border-t border-border/50 pt-8 text-[15px] md:text-base leading-relaxed text-muted-foreground dark:text-slate-300">
                   {LAB.map((l) => (
-                    <li key={l} className="flex gap-3">
-                      <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-brand" />
-                      {l}
+                    <li key={l} className="flex items-center gap-4">
+                      <span className="h-2 w-2 shrink-0 rounded-full bg-brand ring-4 ring-brand/10" />
+                      <span className="font-semibold text-foreground/80 dark:text-foreground/90">{l}</span>
                     </li>
                   ))}
                 </ul>
               </div>
-            </FadeIn>
-            <FadeIn delay={0.08}>
-              <div className="glass-card h-full rounded-[1.75rem] p-8 md:p-10">
-                <div className="mb-6 flex items-center gap-3">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-medical/15 to-brand/20 text-medical-deep">
-                    <Radio className="h-6 w-6" />
+            </StaggerItem>
+            <StaggerItem>
+              <div className="glass-card h-full rounded-[2.5rem] p-10 md:p-14 border border-white/60 bg-white/40 transition-all hover:shadow-2xl">
+                <div className="mb-8 flex items-center gap-5">
+                  <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-medical/15 to-brand/20 text-medical-deep dark:text-primary shadow-inner">
+                    <Radio className="h-8 w-8" />
                   </div>
-                  <h3 className="font-serif text-xl font-semibold text-primary md:text-2xl">RADIOLOGY & IMAGING</h3>
+                  <h3 className="text-2xl font-bold tracking-tight text-primary dark:text-white md:text-3xl">RADIOLOGY & IMAGING</h3>
                 </div>
-                <ul className="space-y-3 border-t border-border/50 pt-6 text-[15px] leading-relaxed text-muted-foreground">
+                <ul className="space-y-4 border-t border-border/50 pt-8 text-[15px] md:text-base leading-relaxed text-muted-foreground dark:text-slate-300">
                   {RADIOLOGY.map((r) => (
-                    <li key={r} className="flex gap-3">
-                      <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-brand" />
-                      {r}
+                    <li key={r} className="flex items-center gap-4">
+                      <span className="h-2 w-2 shrink-0 rounded-full bg-brand ring-4 ring-brand/10" />
+                      <span className="font-semibold text-foreground/80 dark:text-foreground/90">{r}</span>
                     </li>
                   ))}
                 </ul>
               </div>
-            </FadeIn>
-          </div>
+            </StaggerItem>
+          </StaggerContainer>
         </div>
       </section>
       <MissionSections />

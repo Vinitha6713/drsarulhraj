@@ -92,7 +92,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "stylesheet", href: appCss },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Manrope:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800;900&display=swap",
       },
     ],
   }),
@@ -123,11 +123,11 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       <style>{`
         html { scroll-behavior: smooth; scroll-padding-top: 112px; }
-        body { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
-        .font-serif { font-family: 'Cormorant Garamond', Georgia, serif; }
-        .hairline { letter-spacing: 0.22em; text-transform: uppercase; font-size: 11px; }
+        body { font-family: 'Manrope', 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+        h1, h2, h3, h4, h5, h6, button, input, select, textarea { font-family: 'Manrope', 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif; }
+        .hairline { letter-spacing: 0.18em; text-transform: uppercase; font-size: 11px; }
       `}</style>
-      <div className="min-h-screen bg-background text-foreground">
+      <div className="min-h-screen bg-background text-foreground font-sans">
         <SiteHeader />
         <main>
           <Outlet />

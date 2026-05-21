@@ -22,14 +22,54 @@ export const UHC_DOC = asset("Robust%20Indian%20Healthcare%20Reforming%20leading
 export const API_EBOOK = asset("API%20Digital%20e-book%202020.pdf");
 
 export const GALLERY_IMAGES = [
-  { src: asset("assets/images/gallery/i8%20(1).jpg"), alt: "Gallery" },
-  { src: asset("assets/images/gallery/i4.jpg"), alt: "Gallery" },
-  { src: asset("assets/images/gallery/i3.jpg"), alt: "Gallery" },
-  { src: asset("assets/images/gallery/anbu.jpg"), alt: "Gallery" },
-  { src: asset("assets/images/i3.jpg"), alt: "Gallery" },
-  { src: asset("assets/images/Hosp.jpg"), alt: "Hospital" },
-  { src: asset("assets/images/gallery/2.jpg"), alt: "Gallery" },
-  { src: asset("assets/images/gallery/pp%20(1).jpg"), alt: "Gallery" },
+  {
+    src: asset("assets/images/gallery/i8%20(1).jpg"),
+    alt: "Gallery",
+    title: "CMA Global Assembly",
+    desc: "Addressing the Commonwealth Medical Association meeting to advocate for open-access health education.",
+  },
+  {
+    src: asset("assets/images/gallery/i4.jpg"),
+    alt: "Gallery",
+    title: "Teaching Programs",
+    desc: "Conducted seminars, post-graduate DNB teaching, and international methodology research conferences.",
+  },
+  {
+    src: asset("assets/images/gallery/i3.jpg"),
+    alt: "Gallery",
+    title: "Research Studies",
+    desc: "Exploring herbal formulations, intracardiac masses, and lipid profile prognostic markers in AMI.",
+  },
+  {
+    src: asset("assets/images/gallery/anbu.jpg"),
+    alt: "Gallery",
+    title: "Community Initiatives",
+    desc: "Reaching semi-urban and rural masses in south Tamil Nadu with primary cardiac screening.",
+  },
+  {
+    src: asset("assets/images/i3.jpg"),
+    alt: "Gallery",
+    title: "IMA National Forum",
+    desc: "Actively addressing scientific medical forums and representing standard practices.",
+  },
+  {
+    src: asset("assets/images/Hosp.jpg"),
+    alt: "Hospital",
+    title: "Hospital Facility",
+    desc: "First ISO 9001 certified 100-bedded cardiac and multi-specialty facility under one roof in Tuticorin.",
+  },
+  {
+    src: asset("assets/images/gallery/2.jpg"),
+    alt: "Gallery",
+    title: "Presidential Address",
+    desc: "Advocating for telehealth and the fundamental right to health at the global level.",
+  },
+  {
+    src: asset("assets/images/gallery/pp%20(1).jpg"),
+    alt: "Gallery",
+    title: "Milestones in Care",
+    desc: "Championed non-invasive cardiology and emergency golden hour medical care in South India.",
+  },
 ] as const;
 
 export const LEADER_IMAGES = [
@@ -51,21 +91,13 @@ export type NavItem = {
 
 export const NAV: NavItem[] = [
   { label: "Home", to: "/" },
-  {
-    label: "About",
-    children: [
-      { label: "Profile", to: "/profile" },
-      { label: "Academic", to: "/academic" },
-      { label: "Education", to: "/education" },
-      { label: "Business", to: "/business" },
-    ],
-  },
-  { label: "Leader of profession", to: "/leader-of-profession" },
-  {
-    label: "Health",
-    children: [{ label: "Digital Health", to: "/digital-health" }],
-  },
-  { label: "Sundaram Arulrhaj Hospital", to: "/hospital" },
+  { label: "Profile", to: "/profile" },
+  { label: "Academic", to: "/academic" },
+  { label: "Education", to: "/education" },
+  { label: "Business", to: "/business" },
+  { label: "Leader of Profession", to: "/leader-of-profession" },
+  { label: "Digital Health", to: "/digital-health" },
+  { label: "Hospital", to: "/hospital" },
   { label: "Gallery", to: "/gallery" },
 ];
 
@@ -84,18 +116,22 @@ export const WELCOME_TEXT =
 export const RESOURCES = [
   {
     title: "Medical Presentation",
+    desc: "Lectures, conference talks and clinical decks.",
     href: "https://drive.google.com/drive/u/4/folders/17qCxabF2tqVFSptzwcEu9PcNAVxGZjVl",
   },
   {
     title: "Research",
+    desc: "Published work, papers and ongoing studies.",
     href: "https://drive.google.com/drive/folders/13XhnedwsCPeNMqe7cOk0_KBsO3NaNYJL?usp=sharing",
   },
   {
     title: "Books",
+    desc: "Authored and edited volumes for the medical community.",
     href: "https://drive.google.com/drive/folders/1r-Gd4erFBIeNYV_cqGhdCmdrpTfwN2lz?usp=sharing",
   },
   {
     title: "Health Documents",
+    desc: "Public health references, position papers and guides.",
     href: "https://drive.google.com/drive/folders/1aB_MG9bHPvXHbxSbDM0_to6v-yFXy1tX?usp=sharing",
   },
 ] as const;

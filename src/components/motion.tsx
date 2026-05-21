@@ -75,3 +75,77 @@ export function MotionSection({
     </motion.section>
   );
 }
+
+export function StaggerContainer({
+  children,
+  className,
+  delayChildren = 0.1,
+  staggerChildren = 0.08,
+}: {
+  children: ReactNode;
+  className?: string;
+  delayChildren?: number;
+  staggerChildren?: number;
+}) {
+  return (
+    <motion.div
+      className={className}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-50px" }}
+      variants={{
+        hidden: {},
+        visible: {
+          transition: {
+            delayChildren,
+            staggerChildren,
+          },
+        },
+      }}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+export function StaggerItem({
+  children,
+  className,
+}: {
+  children: ReactNode;
+  className?: string;
+}) {
+  return (
+    <motion.div
+      className={className}
+      variants={{
+        hidden: { opacity: 0, y: 20 },
+        visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease } },
+      }}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+export function ScaleIn({
+  children,
+  className,
+  delay = 0,
+}: {
+  children: ReactNode;
+  className?: string;
+  delay?: number;
+}) {
+  return (
+    <motion.div
+      className={className}
+      initial={{ opacity: 0, scale: 0.95 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ duration: 0.6, ease, delay }}
+    >
+      {children}
+    </motion.div>
+  );
+}
