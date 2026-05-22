@@ -164,12 +164,14 @@ export function HomeHero() {
         <p className="mt-5 max-w-xl text-base font-medium text-white/75 md:text-lg">
           First ISO-certified tertiary cardiac & multi-specialty hospital in South Tamil Nadu
         </p>
-        <Link
-          to="/contact"
-          className="btn-premium relative z-10 mt-10 inline-flex min-w-[240px] items-center justify-center rounded-full px-12 py-4.5 text-[13px] font-semibold uppercase tracking-wider text-white"
-        >
-          Contact now
-        </Link>
+        <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.96 }} className="mt-10">
+          <Link
+            to="/contact"
+            className="btn-premium relative z-10 inline-flex min-w-[240px] items-center justify-center rounded-full px-12 py-4.5 text-[13px] font-semibold uppercase tracking-wider text-white"
+          >
+            Contact now
+          </Link>
+        </motion.div>
       </motion.div>
     </section>
   );

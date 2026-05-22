@@ -1,7 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ExternalLink, Download, FileText, Video, ArrowRight } from "lucide-react";
+import { Download, FileText, Video } from "lucide-react";
 import {
   API_EBOOK,
+  MARQUEE_ITEMS,
   PILLARS,
   PORTRAIT,
   RESOURCES,
@@ -11,8 +12,12 @@ import {
   VIDEO_BLOCKS,
   WELCOME_TEXT,
 } from "@/components/site-data";
+import { AnimatedArrow, MarqueeWords, RevealWords, VideoPlayerBlock } from "@/components/animations";
 import { FadeIn, SlideIn, StaggerContainer, StaggerItem, ScaleIn, Counter } from "@/components/motion";
 import { HomeHero } from "@/components/content-layout";
+import { motion } from "framer-motion";
+
+const marqueeList = [...MARQUEE_ITEMS];
 
 export const Route = createFileRoute("/")({
   component: Home,
@@ -36,7 +41,13 @@ function Home() {
       {/* Position Document Callout - Redesigned as a Premium Editorial Announcement */}
       <section className="section-mesh py-20 md:py-28 relative z-20 -mt-16">
         <FadeIn className="mx-auto max-w-5xl px-6">
-          <a href={UHC_DOC} download className="group block">
+          <motion.a
+            href={UHC_DOC}
+            download
+            className="group block"
+            whileHover={{ scale: 1.01 }}
+            whileTap={{ scale: 0.98 }}
+          >
             <div className="glass-card relative overflow-hidden rounded-[2.5rem] p-10 text-center border border-white/60 bg-white/45 shadow-2xl transition-all duration-500 hover:shadow-medical/15 hover:border-brand/40">
               <div
                 className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-transparent via-brand to-transparent opacity-80"
@@ -52,12 +63,12 @@ function Home() {
                   <span className="text-brand-dark dark:text-brand">UHC Position Document</span>
                 </span>
               </h1>
-              <div className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-medical-deep dark:text-primary group-hover:gap-3 transition-all">
+              <div className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-medical-deep dark:text-primary group-hover:gap-4 transition-all">
                 Download Position Document
-                <Download className="h-4 w-4" />
+                <AnimatedArrow size={18} />
               </div>
             </div>
-          </a>
+          </motion.a>
         </FadeIn>
       </section>
 
@@ -86,44 +97,22 @@ function Home() {
         </div>
       </section>
 
-      {/* Slogan Marquee Ticker */}
-      <section className="relative w-full overflow-hidden border-y border-slate-100 dark:border-slate-800/40 bg-white/20 dark:bg-slate-900/10 py-5 backdrop-blur-sm">
-        <div className="flex select-none overflow-hidden">
-          <div className="animate-marquee flex gap-12 text-sm font-semibold tracking-[0.15em] text-primary/60 dark:text-white/40 uppercase whitespace-nowrap">
-            {[
-              "Evidence-Based Modern Medicine",
-              "Commonwealth Medical Association Foundation",
-              "Tuticorin Mecca of Healthcare",
-              "Care · Charity · Commitment",
-              "Indian Medical Association Leadership",
-              "Association of Physicians of India",
-              "First ISO 9001 Certified Tertiary Hospital in South TN",
-              "Say No to Mixopathy advocacy",
-            ].map((text, idx) => (
-              <div key={idx} className="flex items-center gap-12">
-                <span>{text}</span>
-                <span className="h-1.5 w-1.5 rounded-full bg-brand" />
-              </div>
-            ))}
-          </div>
-          <div className="animate-marquee flex gap-12 text-sm font-semibold tracking-[0.15em] text-primary/60 dark:text-white/40 uppercase whitespace-nowrap" aria-hidden>
-            {[
-              "Evidence-Based Modern Medicine",
-              "Commonwealth Medical Association Foundation",
-              "Tuticorin Mecca of Healthcare",
-              "Care · Charity · Commitment",
-              "Indian Medical Association Leadership",
-              "Association of Physicians of India",
-              "First ISO 9001 Certified Tertiary Hospital in South TN",
-              "Say No to Mixopathy advocacy",
-            ].map((text, idx) => (
-              <div key={idx} className="flex items-center gap-12">
-                <span>{text}</span>
-                <span className="h-1.5 w-1.5 rounded-full bg-brand" />
-              </div>
-            ))}
-          </div>
-        </div>
+      {/* Running words ticker */}
+      <section className="relative w-full overflow-hidden border-y border-slate-100 bg-white/20 py-5 backdrop-blur-sm dark:border-slate-800/40 dark:bg-slate-900/10">
+        <MarqueeWords
+          items={marqueeList}
+          className="text-sm font-semibold uppercase tracking-[0.15em] text-primary/60 dark:text-white/40"
+        />
+      </section>
+
+      {/* Second ticker — reverse direction */}
+      <section className="relative w-full overflow-hidden border-b border-slate-100 bg-medical/5 py-4 dark:border-slate-800/40 dark:bg-medical/10">
+        <MarqueeWords
+          items={marqueeList}
+          reverse
+          speed="slow"
+          className="text-xs font-bold uppercase tracking-[0.18em] text-medical-deep/70 dark:text-primary/60"
+        />
       </section>
 
       {/* Biography Section - Redesigned with Grid Accents and Balanced Space */}
@@ -155,7 +144,9 @@ function Home() {
                   Who We Are
                 </span>
                 <h2 className="text-4xl font-extrabold tracking-tight md:text-6xl md:leading-[1.08]">
-                  <span className="animated-gradient-text">WELCOME TO MY WEBSITE</span>
+                  <span className="animated-gradient-text">
+                    <RevealWords text="WELCOME TO MY WEBSITE" />
+                  </span>
                 </h2>
                 <div className="mt-8 h-1 w-24 rounded-full bg-gradient-to-r from-brand to-medical animate-pulse-glow" aria-hidden />
                 <p className="mt-10 text-[16px] font-normal leading-[1.85] text-muted-foreground dark:text-slate-300 md:text-lg">
@@ -215,11 +206,13 @@ function Home() {
         <StaggerContainer className="relative mx-auto mt-16 grid max-w-5xl gap-6 px-6 sm:grid-cols-2">
           {RESOURCES.map((r, i) => (
             <StaggerItem key={r.title}>
-              <a
+              <motion.a
                 href={r.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group/card glass-card flex items-center justify-between gap-6 rounded-2xl p-7 border border-white/60 bg-white/40 transition hover:scale-[1.02]"
+                className="group/card glass-card flex items-center justify-between gap-6 rounded-2xl border border-white/60 bg-white/40 p-7 transition hover:scale-[1.02]"
+                whileHover={{ scale: 1.02, boxShadow: "0 20px 40px -12px oklch(0.35 0.15 250 / 0.12)" }}
+                whileTap={{ scale: 0.98 }}
               >
                 <div className="space-y-2 text-left">
                   <h3 className="text-left text-xl font-bold text-primary dark:text-white transition group-hover/card:text-medical-deep md:text-2xl">
@@ -230,9 +223,9 @@ function Home() {
                   </p>
                 </div>
                 <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-medical/15 to-brand/20 text-medical-deep transition duration-300 group-hover/card:scale-110 group-hover/card:shadow-lg group-hover/card:shadow-medical/10">
-                  <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover/card:translate-x-1" />
+                  <AnimatedArrow size={22} />
                 </span>
-              </a>
+              </motion.a>
             </StaggerItem>
           ))}
         </StaggerContainer>
@@ -265,30 +258,11 @@ function Home() {
               <div
                 className="grid items-center gap-12 rounded-[2.5rem] border border-white/60 bg-gradient-to-br from-white via-[#faf9fc] to-[#f2f6fc] dark:from-slate-800/80 dark:via-slate-900/60 dark:to-slate-950/40 p-8 shadow-xl md:grid-cols-2 md:gap-20 md:p-16 transition-all duration-500 hover:shadow-2xl hover:border-brand/35"
               >
-                <div
-                  className={`relative aspect-video overflow-hidden rounded-[2rem] shadow-2xl border border-white/20 ring-1 ring-slate-900/5 group/video ${i % 2 === 1 ? "md:order-2" : ""}`}
-                >
-                  <div
-                    className="absolute -inset-1 bg-gradient-to-tr from-brand/30 to-medical/25 opacity-30 blur-2xl"
-                    aria-hidden
-                  />
-                  <iframe
-                    src={v.embed}
-                    title={v.title}
-                    loading="lazy"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                    className="relative h-full w-full rounded-[2rem]"
-                  />
-                  {/* Pulsing Play Overlay */}
-                  <div className="absolute inset-0 flex items-center justify-center pointer-events-none transition duration-500 group-hover/video:scale-105">
-                    <div className="flex h-15 w-15 items-center justify-center rounded-full bg-medical/90 dark:bg-primary/95 text-white shadow-xl animate-pulse-glow border border-white/20">
-                      <svg className="h-6.5 w-6.5 fill-white translate-x-0.5" viewBox="0 0 24 24">
-                        <path d="M8 5v14l11-7z" />
-                      </svg>
-                    </div>
-                  </div>
-                </div>
+                <VideoPlayerBlock
+                  embed={v.embed}
+                  title={v.title}
+                  className={`shadow-2xl border border-white/20 ring-1 ring-slate-900/5 ${i % 2 === 1 ? "md:order-2" : ""}`}
+                />
                 <div className={i % 2 === 1 ? "md:order-1" : ""}>
                   <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand/10 text-brand-dark dark:text-brand font-bold text-[10px] uppercase tracking-wider mb-6">
                     <Video className="h-4 w-4" />

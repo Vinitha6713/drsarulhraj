@@ -1,11 +1,20 @@
 import { Link } from "@tanstack/react-router";
+import { motion } from "framer-motion";
 import { Mail, MapPin, Phone } from "lucide-react";
+import { MarqueeWords } from "@/components/animations";
 import { FadeIn } from "@/components/motion";
-import { FOOTER_DOT_BOTTOM, FOOTER_DOT_TOP, FOOTER_SERVICES } from "./site-data";
+import { FOOTER_DOT_BOTTOM, FOOTER_DOT_TOP, FOOTER_SERVICES, MARQUEE_ITEMS } from "./site-data";
 
 export function SiteFooter() {
   return (
     <footer className="relative overflow-hidden bg-[#151d30] text-white">
+      <div className="border-b border-white/[0.06] py-4">
+        <MarqueeWords
+          items={[...MARQUEE_ITEMS]}
+          speed="slow"
+          className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/35"
+        />
+      </div>
       {/* Soft Luminous Medical Glow overlays (No Black) */}
       <div
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_15%_10%,oklch(0.62_0.09_235/0.14),transparent),radial-gradient(ellipse_60%_50%_at_90%_100%,oklch(0.65_0.15_220/0.12),transparent)]"
@@ -95,12 +104,14 @@ export function SiteFooter() {
                     Mobile No: +919487480001
                   </p>
                 </div>
-                <Link
-                  to="/contact"
-                  className="btn-premium flex w-full items-center justify-center rounded-full py-4 text-xs font-bold uppercase tracking-wider text-white shadow-lg shadow-medical/15"
-                >
-                  Contact now
-                </Link>
+                <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
+                  <Link
+                    to="/contact"
+                    className="btn-premium flex w-full items-center justify-center rounded-full py-4 text-xs font-bold uppercase tracking-wider text-white shadow-lg shadow-medical/15"
+                  >
+                    Contact now
+                  </Link>
+                </motion.div>
               </div>
             </div>
           </FadeIn>

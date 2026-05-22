@@ -56,12 +56,14 @@ export function SiteHeader() {
             ))}
           </nav>
 
-          <Link
-            to="/contact"
-            className="btn-premium relative z-10 hidden min-w-[9.5rem] items-center justify-center rounded-full px-6 py-2.5 text-[10px] font-extrabold uppercase tracking-wider text-white md:inline-flex"
-          >
-            Contact now
-          </Link>
+          <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }} className="hidden md:block">
+            <Link
+              to="/contact"
+              className="btn-premium relative z-10 inline-flex min-w-[9.5rem] items-center justify-center rounded-full px-6 py-2.5 text-[10px] font-extrabold uppercase tracking-wider text-white"
+            >
+              Contact now
+            </Link>
+          </motion.div>
 
           <button
             type="button"
@@ -122,8 +124,24 @@ function NavLinkDesktop({
       className={`nav-link-wrap relative px-2 py-2 text-[10px] font-extrabold uppercase tracking-[0.14em] text-foreground/80 dark:text-foreground/90 transition hover:text-medical xl:px-2.5 ${active ? "is-active" : ""}`}
       activeOptions={{ exact: item.to === "/" }}
     >
-      {item.label}
-      <span className="nav-underline" />
+      {active && (
+        <motion.span
+          layoutId="nav-active-pill"
+          className="absolute inset-x-0.5 inset-y-1 rounded-lg bg-medical/10 dark:bg-primary/10"
+          transition={{ type: "spring", stiffness: 380, damping: 28 }}
+          aria-hidden
+        />
+      )}
+      <span className="relative z-10">{item.label}</span>
+      {active ? (
+        <motion.span
+          layoutId="nav-underline-bar"
+          className="nav-underline scale-x-100"
+          transition={{ type: "spring", stiffness: 380, damping: 28 }}
+        />
+      ) : (
+        <span className="nav-underline" />
+      )}
     </Link>
   );
 }
@@ -143,14 +161,16 @@ function MobileNavItem({
       : pathname === item.to || pathname.startsWith(`${item.to}/`);
 
   return (
-    <Link
-      to={item.to!}
-      onClick={onNavigate}
-      className={`block border-b border-border/40 dark:border-white/5 py-3 text-[11px] font-extrabold uppercase tracking-[0.12em] ${
-        active ? "text-medical dark:text-primary" : "text-foreground/80 dark:text-foreground/90"
-      }`}
-    >
-      {item.label}
-    </Link>
+    <motion.div whileTap={{ scale: 0.98, x: 4 }} transition={{ type: "spring", stiffness: 400, damping: 24 }}>
+      <Link
+        to={item.to!}
+        onClick={onNavigate}
+        className={`block border-b border-border/40 py-3 text-[11px] font-extrabold uppercase tracking-[0.12em] transition-colors dark:border-white/5 ${
+          active ? "text-medical dark:text-primary" : "text-foreground/80 dark:text-foreground/90"
+        }`}
+      >
+        {item.label}
+      </Link>
+    </motion.div>
   );
 }

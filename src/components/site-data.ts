@@ -83,6 +83,17 @@ export type NavItem = {
   children?: { label: string; to: string }[];
 };
 
+export const MARQUEE_ITEMS = [
+  "Evidence-Based Modern Medicine",
+  "Commonwealth Medical Association Foundation",
+  "Tuticorin Mecca of Healthcare",
+  "Care · Charity · Commitment",
+  "Indian Medical Association Leadership",
+  "Association of Physicians of India",
+  "First ISO 9001 Certified Tertiary Hospital in South TN",
+  "Say No to Mixopathy advocacy",
+] as const;
+
 export const NAV: NavItem[] = [
   { label: "Home", to: "/" },
   { label: "Profile", to: "/profile" },

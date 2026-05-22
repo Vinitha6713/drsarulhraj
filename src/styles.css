@@ -510,6 +510,64 @@
     animation-play-state: paused;
   }
 
+  @keyframes marquee-reverse {
+    0% { transform: translateX(-50%); }
+    100% { transform: translateX(0%); }
+  }
+  .animate-marquee-reverse {
+    display: flex;
+    width: max-content;
+    animation: marquee-reverse 30s linear infinite;
+  }
+  .animate-marquee-reverse:hover {
+    animation-play-state: paused;
+  }
+
+  @keyframes marquee-slow {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-50%); }
+  }
+  .animate-marquee-slow {
+    display: flex;
+    width: max-content;
+    animation: marquee-slow 40s linear infinite;
+  }
+
+  @keyframes marquee-fast {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-50%); }
+  }
+  .animate-marquee-fast {
+    display: flex;
+    width: max-content;
+    animation: marquee-fast 18s linear infinite;
+  }
+
+  @keyframes play-ring-pulse {
+    0%, 100% { box-shadow: 0 0 0 0 oklch(0.58 0.14 175 / 0.45); }
+    50% { box-shadow: 0 0 0 14px oklch(0.58 0.14 175 / 0); }
+  }
+  .play-ring {
+    animation: play-ring-pulse 2s ease-in-out infinite;
+  }
+
+  .nav-link-wrap:active {
+    transform: scale(0.96);
+    transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-marquee,
+    .animate-marquee-reverse,
+    .animate-marquee-slow,
+    .animate-marquee-fast,
+    .play-ring,
+    .hero-ken-burns,
+    .contact-hero-blur {
+      animation: none !important;
+    }
+  }
+
   /* ===== Premium cinematic motion utilities ===== */
   @keyframes float-y {
     0%, 100% { transform: translateY(0); }

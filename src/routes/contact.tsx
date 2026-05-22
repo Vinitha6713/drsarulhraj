@@ -1,4 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { motion } from "framer-motion";
+import { AnimatedArrow } from "@/components/animations";
 import { ContactHero } from "@/components/content-layout";
 import { FadeIn } from "@/components/motion";
 import { HERO_BG } from "@/components/site-data";
@@ -62,11 +64,13 @@ function ContactPage() {
           <div className="grid gap-8 md:grid-cols-3">
             {CONTACT_ITEMS.map((item, i) => (
               <FadeIn key={item.href} delay={0.1 * i}>
-                <a
+                <motion.a
                   href={item.href}
                   target={item.href.startsWith("http") ? "_blank" : undefined}
                   rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                  className="group relative flex h-full flex-col justify-between overflow-hidden rounded-[2.2rem] border border-white/80 bg-white/45 dark:bg-slate-900/40 p-8 shadow-xl backdrop-blur-md transition-all duration-500 hover:scale-[1.03] hover:border-brand/40"
+                  className="group relative flex h-full flex-col justify-between overflow-hidden rounded-[2.2rem] border border-white/80 bg-white/45 p-8 shadow-xl backdrop-blur-md transition-colors duration-500 hover:border-brand/40 dark:bg-slate-900/40"
+                  whileHover={{ scale: 1.03, y: -4 }}
+                  whileTap={{ scale: 0.98 }}
                 >
                   {/* Premium Background Accent Lights */}
                   <div
@@ -96,11 +100,11 @@ function ContactPage() {
                     </div>
                   </div>
 
-                  <div className="relative mt-8 pt-6 border-t border-slate-100 dark:border-slate-800/60 flex items-center gap-2 text-sm font-bold text-medical-deep dark:text-primary">
+                  <div className="relative mt-8 flex items-center gap-2 border-t border-slate-100 pt-6 text-sm font-bold text-medical-deep dark:border-slate-800/60 dark:text-primary">
                     Connect Now
-                    <span className="transition-transform group-hover:translate-x-1.5 duration-300">→</span>
+                    <AnimatedArrow size={18} />
                   </div>
-                </a>
+                </motion.a>
               </FadeIn>
             ))}
           </div>
