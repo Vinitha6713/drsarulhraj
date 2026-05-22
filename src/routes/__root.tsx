@@ -136,6 +136,84 @@ function RootComponent() {
     return () => observer.disconnect();
   }, []);
 
+  // Global animation enhancers: scroll reveal + ripple + tilt — no logic changes
+  useEffect(() => {
+    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReduced) return;
+
+    const tagTargets = () => {
+      const selectors = [
+        "section",
+        ".glass-card",
+        ".lift-card",
+        ".image-frame",
+        ".pillar-one",
+        ".pillar-two",
+        ".pillar-three",
+        ".pillar-four",
+        "article",
+        "h1",
+        "h2",
+        "h3",
+      ];
+      document.querySelectorAll<HTMLElement>(selectors.join(",")).forEach((el) => {
+        if (!el.hasAttribute("data-reveal")) el.setAttribute("data-reveal", "");
+      });
+      // Add tilt to cards
+      document.querySelectorAll<HTMLElement>(".glass-card, .lift-card, .pillar-one, .pillar-two, .pillar-three, .pillar-four").forEach((el) => {
+        el.classList.add("tilt-3d");
+      });
+    };
+
+    tagTargets();
+
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("in-view");
+            io.unobserve(entry.target);
+          }
+        }
+      },
+      { rootMargin: "0px 0px -8% 0px", threshold: 0.08 }
+    );
+    document.querySelectorAll("[data-reveal]").forEach((el) => io.observe(el));
+
+    // Re-tag on DOM changes (route transitions)
+    const mo = new MutationObserver(() => {
+      tagTargets();
+      document.querySelectorAll("[data-reveal]:not(.in-view)").forEach((el) => io.observe(el));
+    });
+    mo.observe(document.body, { childList: true, subtree: true });
+
+    // Ripple click effect
+    const onClick = (e: MouseEvent) => {
+      const target = e.target as HTMLElement | null;
+      const host = target?.closest<HTMLElement>('button, a.btn-premium, .btn-premium, [role="button"]');
+      if (!host) return;
+      const rect = host.getBoundingClientRect();
+      const size = Math.max(rect.width, rect.height);
+      const ripple = document.createElement("span");
+      ripple.className = "ripple-wave";
+      ripple.style.width = ripple.style.height = `${size}px`;
+      ripple.style.left = `${e.clientX - rect.left - size / 2}px`;
+      ripple.style.top = `${e.clientY - rect.top - size / 2}px`;
+      const prev = getComputedStyle(host).position;
+      if (prev === "static") host.style.position = "relative";
+      host.appendChild(ripple);
+      setTimeout(() => ripple.remove(), 750);
+    };
+    document.addEventListener("click", onClick);
+
+    return () => {
+      io.disconnect();
+      mo.disconnect();
+      document.removeEventListener("click", onClick);
+    };
+  }, []);
+
+
   return (
     <QueryClientProvider client={queryClient}>
       <style>{`
