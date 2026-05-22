@@ -53,12 +53,6 @@ export const GALLERY_IMAGES = [
     desc: "Actively addressing scientific medical forums and representing standard practices.",
   },
   {
-    src: asset("assets/images/Hosp.jpg"),
-    alt: "Hospital",
-    title: "Hospital Facility",
-    desc: "First ISO 9001 certified 100-bedded cardiac and multi-specialty facility under one roof in Tuticorin.",
-  },
-  {
     src: asset("assets/images/gallery/2.jpg"),
     alt: "Gallery",
     title: "Presidential Address",

@@ -11,7 +11,7 @@ export const Route = createFileRoute("/profile")({
 
 function ProfilePage() {
   return (
-    <ContentPage title="About Me" subtitle="BIOGRAPHY">
+    <ContentPage title="About Me" subtitle="BIOGRAPHY" variant="profile">
       <StaggerContainer className="space-y-8">
         <StaggerItem>
           <p className="text-[16px] md:text-lg leading-[1.85] font-medium text-foreground/80 dark:text-foreground/90">

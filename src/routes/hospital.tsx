@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Microscope, Radio, ShieldAlert, CheckCircle } from "lucide-react";
-import { HeroBanner, MissionSections } from "@/components/content-layout";
+import { InnerPageHero, MissionSections } from "@/components/content-layout";
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/motion";
 import { PHOTO, SPEECH } from "@/components/site-data";
 
@@ -37,8 +37,12 @@ const RADIOLOGY = [
 function HospitalPage() {
   return (
     <>
-      <HeroBanner />
-      <section className="section-mesh py-20 md:py-28 relative z-20 -mt-20">
+      <InnerPageHero
+        variant="hospital"
+        title="100-bedded multi-specialty institution in Tuticorin, Tamil Nadu"
+        subtitle="SUNDARAM ARULRHAJ HOSPITALS"
+      />
+      <section className="section-mesh relative z-20 -mt-12 py-20 md:py-28">
         <div className="mx-auto max-w-7xl px-6">
           {/* Dual Overlay Editorial Photos */}
           <div className="relative mx-auto max-w-5xl">
@@ -54,15 +58,8 @@ function HospitalPage() {
             </FadeIn>
           </div>
 
-          {/* Heading */}
           <FadeIn className="mt-20 text-center md:mt-28">
-            <span className="inline-block px-3.5 py-1 rounded-full bg-medical/10 text-medical-deep dark:text-primary font-bold text-[10px] uppercase tracking-widest mb-6 border border-medical/20">
-              Healthcare Institution
-            </span>
-            <h1 className="text-4xl font-extrabold tracking-tight text-primary dark:text-white md:text-7xl md:leading-[1.05]">
-              SUNDARAM ARULRHAJ HOSPITALS
-            </h1>
-            <p className="mx-auto mt-8 max-w-3xl text-[16px] leading-relaxed text-muted-foreground dark:text-slate-300 md:text-xl">
+            <p className="mx-auto max-w-3xl text-[16px] leading-relaxed text-muted-foreground dark:text-slate-300 md:text-xl">
               SAH is a 100 bedded, multi-specialty, medical institution in Semi Urban Area, Tuticorin,
               TamilNadu, India. SAH is being expanded to 200 beds Medical Institution.{" "}
               <a

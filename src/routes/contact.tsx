@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { HeroBanner } from "@/components/content-layout";
+import { ContactHero } from "@/components/content-layout";
 import { FadeIn } from "@/components/motion";
+import { HERO_BG } from "@/components/site-data";
 import { Mail, MapPin, Phone, MessageSquare } from "lucide-react";
 
 export const Route = createFileRoute("/contact")({
@@ -34,20 +35,29 @@ const CONTACT_ITEMS = [
 
 function ContactPage() {
   return (
-    <>
-      <HeroBanner />
-      <section className="section-mesh py-24 md:py-32 relative z-20 -mt-20">
+    <div className="relative min-h-screen">
+      <div className="pointer-events-none absolute inset-0 z-0" aria-hidden>
+        <img
+          src={HERO_BG}
+          alt=""
+          className="h-full w-full object-cover object-center"
+        />
+        <div className="absolute inset-0 bg-slate-900/35" />
+      </div>
+
+      <div className="relative z-10">
+      <ContactHero />
+      <section className="relative -mt-8 py-20 md:py-28">
         <div className="mx-auto max-w-6xl px-6">
-          <div className="text-center mb-16">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gradient-to-r from-medical/15 to-brand/15 text-medical-deep dark:text-primary font-bold text-[10px] uppercase tracking-widest mb-4 border border-white/40">
+          <FadeIn className="mb-12 text-center">
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-white/40 bg-gradient-to-r from-medical/15 to-brand/15 px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-medical-deep dark:text-primary">
               <MessageSquare className="h-4.5 w-4.5" />
-              Get In Touch
+              Direct Lines
             </span>
-            <h2 className="text-4xl font-extrabold text-primary dark:text-white md:text-6xl tracking-tight">CONTACT INFORMATION</h2>
-            <p className="mt-4 text-muted-foreground max-w-xl mx-auto font-medium">
-              Reach out to us directly for professional consultations, emergencies, or general hospital appointments.
-            </p>
-          </div>
+            <h2 className="mt-4 text-3xl font-extrabold tracking-tight text-primary dark:text-white md:text-4xl">
+              Contact Information
+            </h2>
+          </FadeIn>
 
           <div className="grid gap-8 md:grid-cols-3">
             {CONTACT_ITEMS.map((item, i) => (
@@ -96,6 +106,7 @@ function ContactPage() {
           </div>
         </div>
       </section>
-    </>
+      </div>
+    </div>
   );
 }

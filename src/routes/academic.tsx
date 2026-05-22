@@ -46,7 +46,7 @@ const BOOKS = [
 
 function AcademicPage() {
   return (
-    <ContentPage title="Academic Profile" subtitle="ACADEMIC HONORS">
+    <ContentPage title="Academic Profile" subtitle="ACADEMIC HONORS" variant="academic">
       <div className="text-left mb-10">
         <p className="text-muted-foreground font-medium text-lg leading-relaxed max-w-2xl">
           Distinguished career marked by university gold medals, fellowships from Royal Colleges of London & Glasgow, and international publications.

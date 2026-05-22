@@ -12,7 +12,7 @@ import {
   WELCOME_TEXT,
 } from "@/components/site-data";
 import { FadeIn, SlideIn, StaggerContainer, StaggerItem, ScaleIn, Counter } from "@/components/motion";
-import { HeroBanner } from "@/components/content-layout";
+import { HomeHero } from "@/components/content-layout";
 
 export const Route = createFileRoute("/")({
   component: Home,
@@ -31,7 +31,7 @@ const pillarClass = {
 function Home() {
   return (
     <>
-      <HeroBanner />
+      <HomeHero />
 
       {/* Position Document Callout - Redesigned as a Premium Editorial Announcement */}
       <section className="section-mesh py-20 md:py-28 relative z-20 -mt-16">

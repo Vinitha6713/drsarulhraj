@@ -31,7 +31,7 @@ function Section({ title, items }: { title: string; items: string[] }) {
 
 function BusinessPage() {
   return (
-    <ContentPage title="Business Profile" subtitle="BUSINESS VENTURES">
+    <ContentPage title="Business Profile" subtitle="BUSINESS VENTURES" variant="business">
       <div className="text-left mb-10">
         <p className="text-muted-foreground font-medium text-lg leading-relaxed max-w-2xl">
           Overview of the medical, pharmaceutical, and ecological ventures spearheaded by Prof. Dr. S. Arulrhaj.

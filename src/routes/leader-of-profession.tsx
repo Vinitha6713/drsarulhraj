@@ -103,7 +103,7 @@ function BlockSection({ title, icon: Icon, items }: { title: string; icon: any; 
 
 function LeaderPage() {
   return (
-    <ContentPage title="LEADER OF PROFESSION" subtitle="PROFESSIONAL LEADERSHIP">
+    <ContentPage title="LEADER OF PROFESSION" subtitle="PROFESSIONAL LEADERSHIP" variant="leader">
       <div className="text-left mb-10">
         <p className="text-muted-foreground font-medium text-lg leading-relaxed max-w-2xl">
           Advancing global medical standards through clinical research milestones, international leadership, and public health policies.

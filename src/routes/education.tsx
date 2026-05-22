@@ -32,7 +32,7 @@ function BlockSection({ title, icon: Icon, items }: { title: string; icon: any; 
 
 function EducationPage() {
   return (
-    <ContentPage title="Education Profile" subtitle="MEDICAL EDUCATION" image={SPEECH}>
+    <ContentPage title="Education Profile" subtitle="MEDICAL EDUCATION" image={SPEECH} variant="education">
       <div className="text-left mb-10">
         <p className="text-muted-foreground font-medium text-lg leading-relaxed max-w-2xl">
           Nurturing future healthcare specialists through fully certified post graduate, paramedical, and digital learning programs.

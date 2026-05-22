@@ -10,7 +10,7 @@ export const Route = createFileRoute("/digital-health")({
 
 function DigitalHealthPage() {
   return (
-    <ContentPage title="Digitalhealth Profile" subtitle="DIGITAL HEALTH">
+    <ContentPage title="Digitalhealth Profile" subtitle="DIGITAL HEALTH" variant="digital-health">
       <div className="text-left mb-10">
         <p className="text-muted-foreground font-medium text-lg leading-relaxed max-w-2xl">
           Pioneering virtual medicine, telemedicine models, and remote diagnostic systems to bridge modern healthcare gaps.

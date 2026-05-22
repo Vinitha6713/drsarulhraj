@@ -453,7 +453,38 @@
     animation: pulse-glow 2s infinite ease-in-out;
   }
 
-<<<<<<< HEAD
+  /* Cinematic hero — slow zoom + contact blur pulse */
+  @keyframes hero-ken-burns {
+    0% { transform: scale(1) translateZ(0); }
+    100% { transform: scale(1.12) translateZ(0); }
+  }
+  .hero-ken-burns {
+    animation: hero-ken-burns 22s ease-in-out infinite alternate;
+    will-change: transform;
+  }
+
+  @keyframes contact-blur-pulse {
+    0%, 100% { filter: blur(28px) brightness(0.72); opacity: 0.85; }
+    50% { filter: blur(34px) brightness(0.78); opacity: 0.95; }
+  }
+  .contact-hero-blur {
+    animation: contact-blur-pulse 8s ease-in-out infinite;
+  }
+
+  @keyframes hero-shimmer {
+    0% { transform: translateX(-100%) skewX(-12deg); opacity: 0; }
+    15% { opacity: 0.35; }
+    100% { transform: translateX(200%) skewX(-12deg); opacity: 0; }
+  }
+  .hero-shimmer::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.12) 50%, transparent 60%);
+    animation: hero-shimmer 6s ease-in-out infinite;
+    pointer-events: none;
+  }
+
   /* Smooth Infinite Marquee Ticker */
   @keyframes marquee {
     0% { transform: translateX(0%); }
@@ -466,7 +497,8 @@
   }
   .animate-marquee:hover {
     animation-play-state: paused;
-=======
+  }
+
   /* ===== Premium cinematic motion utilities ===== */
   @keyframes float-y {
     0%, 100% { transform: translateY(0); }
@@ -572,6 +604,5 @@
       var(--background);
     background-size: 180% 180%;
     animation: gradient-shift 18s ease infinite;
->>>>>>> 1fa4afd8605f2931f26e1107ec2c8722f05607a7
   }
 }
