@@ -189,6 +189,17 @@
     color: inherit;
     text-decoration: none;
   }
+
+  /* Hide Lovable "Edit with" hosting watermark */
+  #lovable-badge,
+  [id="lovable-badge"],
+  a[href*="utm_source=lovable-badge"],
+  a[href*="lovable.dev/projects"][href*="lovable-badge"] {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
 }
 
 @layer utilities {

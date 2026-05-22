@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
   Outlet,
@@ -116,8 +117,24 @@ function RootShell({ children }: { children: React.ReactNode }) {
   );
 }
 
+function removeLovableBadge() {
+  document.getElementById("lovable-badge")?.remove();
+  document.querySelectorAll('a[href*="lovable-badge"]').forEach((link) => {
+    const el = link.closest("#lovable-badge") ?? link.parentElement;
+    if (el?.textContent?.includes("Edit with")) el.remove();
+    else if (link.textContent?.includes("Edit with")) link.remove();
+  });
+}
+
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+
+  useEffect(() => {
+    removeLovableBadge();
+    const observer = new MutationObserver(removeLovableBadge);
+    observer.observe(document.body, { childList: true, subtree: true });
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <QueryClientProvider client={queryClient}>
