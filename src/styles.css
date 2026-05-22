@@ -674,4 +674,129 @@
     background-size: 180% 180%;
     animation: gradient-shift 18s ease infinite;
   }
+
+  /* ===== Global scroll-reveal (applied by root observer) ===== */
+  [data-reveal] {
+    opacity: 0;
+    transform: translateY(28px);
+    filter: blur(6px);
+    transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1),
+                transform 0.9s cubic-bezier(0.16,1,0.3,1),
+                filter 0.9s cubic-bezier(0.16,1,0.3,1);
+    will-change: opacity, transform, filter;
+  }
+  [data-reveal].in-view {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+  [data-reveal="stagger"] > * {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1),
+                transform 0.7s cubic-bezier(0.16,1,0.3,1);
+    transition-delay: calc(var(--stagger-i, 0) * 80ms);
+  }
+  [data-reveal="stagger"].in-view > * {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ===== Universal lift + tilt for cards ===== */
+  .glass-card, .lift-card, .image-frame, .pillar-one, .pillar-two, .pillar-three, .pillar-four {
+    transform-style: preserve-3d;
+    perspective: 1000px;
+  }
+  .tilt-3d {
+    transition: transform 0.45s cubic-bezier(0.16,1,0.3,1), box-shadow 0.45s cubic-bezier(0.16,1,0.3,1);
+    transform-style: preserve-3d;
+  }
+  .tilt-3d:hover {
+    transform: perspective(900px) rotateX(4deg) rotateY(-4deg) translateY(-6px) scale(1.015);
+    box-shadow: 0 30px 60px -24px oklch(0.35 0.15 250 / 0.28), 0 10px 28px -10px oklch(0.58 0.14 175 / 0.22);
+  }
+
+  /* ===== Glow border ring for any card on hover ===== */
+  .glass-card, .pillar-one, .pillar-two, .pillar-three, .pillar-four, .lift-card {
+    position: relative;
+  }
+  .glass-card::after,
+  .lift-card::after {
+    content: "";
+    position: absolute; inset: -1px;
+    border-radius: inherit;
+    pointer-events: none;
+    background: linear-gradient(130deg, transparent 20%, oklch(0.78 0.16 200 / 0.55), oklch(0.35 0.15 250 / 0.45), transparent 80%);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor; mask-composite: exclude;
+    padding: 1px;
+    opacity: 0;
+    transition: opacity 0.5s cubic-bezier(0.16,1,0.3,1);
+  }
+  .glass-card:hover::after,
+  .lift-card:hover::after {
+    opacity: 1;
+  }
+
+  /* ===== Universal image hover zoom ===== */
+  .image-frame img,
+  .img-zoom img,
+  figure img,
+  .group:hover img {
+    transition: transform 1.1s cubic-bezier(0.16,1,0.3,1), filter 0.6s ease;
+  }
+  .image-frame:hover img,
+  .img-zoom:hover img {
+    transform: scale(1.06);
+  }
+
+  /* ===== Ripple click effect (applied globally) ===== */
+  .ripple-wave {
+    position: absolute;
+    border-radius: 9999px;
+    transform: scale(0);
+    animation: ripple 0.7s cubic-bezier(0.16,1,0.3,1);
+    background: radial-gradient(circle, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0.15) 50%, transparent 70%);
+    pointer-events: none;
+    mix-blend-mode: screen;
+  }
+  @keyframes ripple {
+    to { transform: scale(2.6); opacity: 0; }
+  }
+  button, a.btn-premium, .btn-premium, [role="button"] {
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* ===== Magnetic-feel button hover lift ===== */
+  .btn-premium {
+    transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), box-shadow 0.4s cubic-bezier(0.16,1,0.3,1), background-position 0.6s;
+  }
+  .btn-premium:hover {
+    transform: translateY(-3px) scale(1.03);
+  }
+
+  /* ===== Staggered text reveal ===== */
+  .reveal-text > * {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.6s cubic-bezier(0.16,1,0.3,1), transform 0.6s cubic-bezier(0.16,1,0.3,1);
+    transition-delay: calc(var(--word-i, 0) * 50ms);
+  }
+  .reveal-text.in-view > * {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    [data-reveal], [data-reveal] > *, .reveal-text > * {
+      opacity: 1 !important;
+      transform: none !important;
+      filter: none !important;
+    }
+    .tilt-3d:hover { transform: none; }
+    .ripple-wave { display: none; }
+  }
 }
+
